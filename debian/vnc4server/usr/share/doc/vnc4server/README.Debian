@@ -1,0 +1,14 @@
+Note about vnc module and XF86Config
+
+This package install the vnc.so XFree86 version 4 module to the
+/usr/X11R6/lib/modules/extensions directory and can be enabled like any other
+module by adding a Load "vnc" line to the Module section of XF86Config.
+The parameters listed in the Xvnc manual page can be set as options in
+XF86Config e.g. Option "passwordFile" "/root/.vnc/passwd".
+Note that for some reason options cannot be set in the Module section of
+XF86Config - try the Screen section.
+
+You can also configure the vncserver by adding a vnc.conf file to /etc.
+You can se a sample file in /usr/share/vnc4-common/examples/
+
+ -- Ola Lundqvist <opal@debian.org>, Sun Oct 24 21:47:14 2004

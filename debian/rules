@@ -1,0 +1,215 @@
+#!/usr/bin/make -f
+# -*- makefile -*-
+# Sample debian/rules that uses debhelper.
+# GNU copyright 1997 to 1999 by Joey Hess.
+#
+# Modified to make a template file for a multi-binary package with separated
+# build-arch and build-indep targets  by Bill Allombert 2001
+
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
+
+# This has to be exported to make some magic below work.
+export DH_OPTIONS
+
+# These are used for cross-compiling and for saving the configure script
+# from having to guess our platform (since we know it already)
+DEB_HOST_GNU_TYPE   ?= $(shell dpkg-architecture -qDEB_HOST_GNU_TYPE)
+DEB_BUILD_GNU_TYPE  ?= $(shell dpkg-architecture -qDEB_BUILD_GNU_TYPE)
+
+
+CFLAGS = -Wall -g
+
+ifneq (,$(findstring noopt,$(DEB_BUILD_OPTIONS)))
+	CFLAGS += -O0
+else
+	CFLAGS += -O2
+endif
+ifeq (,$(findstring nostrip,$(DEB_BUILD_OPTIONS)))
+	INSTALL_PROGRAM += -s
+endif
+
+unix/config.status: unix/configure
+	dh_testdir
+	# Add here commands to configure the package.
+	cd unix && autoconf
+	cd unix && \
+	CFLAGS="$(CFLAGS)" ./configure \
+		--host=$(DEB_HOST_GNU_TYPE) --build=$(DEB_BUILD_GNU_TYPE) \
+		--prefix=/usr --mandir=\$${prefix}/share/man \
+		--infodir=\$${prefix}/share/info \
+		\
+		--with-installed-zlib
+
+
+#Architecture 
+build: build-arch build-indep
+
+build-arch: build-arch-stamp build-java-stamp build-server-stamp
+build-arch-stamp:  unix/config.status
+	$(MAKE) -C unix
+	touch build-arch-stamp
+
+build-java-stamp: build-arch-stamp
+	touch build-java-stamp
+
+build-server-stamp: build-arch-stamp
+	rm -rf xorg-xserver*
+	dpkg-source -x ./xsrc/xorg-server_*dsc
+	cd xorg-server-1.0.2 && debian/rules patch
+	cd xorg-server-1.0.2 && patch -p1 < ../debian/patches/xorg-vnc-debian.patch
+	ln -sf xorg-server-1.0.2 xorg-server
+	cd unix && ln -s ../xorg-server-1.0.2 xorg-server-1.0.2
+	cp -a unix/xc/programs/Xserver/vnc/Xvnc/xvnc.cc \
+		unix/xc/programs/Xserver/Xvnc.man \
+		unix/xc/programs/Xserver/vnc/*.h \
+		unix/xc/programs/Xserver/vnc/*.cc \
+		xorg-server-*/hw/vnc/
+	cp -a xorg-server-*/cfb/cfb.h xorg-server-*/hw/vnc
+	cp -a xorg-server-*/fb/fb.h xorg-server-*/hw/vnc
+	cp -a xorg-server-*/fb/fbrop.h xorg-server-*/hw/vnc
+	sed -i -e 's,xor,c_xor,' -e 's,and,c_and,' \
+		xorg-server-*/hw/vnc/cfb.h \
+		xorg-server-*/hw/vnc/fb.h \
+		xorg-server-*/hw/vnc/fbrop.h
+	cd xorg-server && automake-1.9
+	cd xorg-server && autoconf
+	cd xorg-server && ./configure \
+		--enable-xorg \
+		--disable-dependency-tracking \
+		--disable-xprint \
+		--disable-static \
+		--enable-composite \
+		--with-rgb-path=/etc/X11/rgb \
+		--with-xkb-output=/var/lib/xkb \
+		--with-fontdir=/usr/share/fonts/X11 \
+		--disable-xorgcfg \
+		--disable-xorgconfig \
+		--disable-dmx \
+		--disable-lbx \
+		--enable-xdmcp \
+		--disable-xevie \
+		--disable-dri \
+		--with-int10=stub \
+		--prefix=/usr --mandir=\$${prefix}/share/man \
+		--infodir=\$${prefix}/share/info --sysconfdir=/etc \
+		--localstatedir=/var $(confflags) 
+
+#		--with-os-name="$$(lsb_release -ds)" \
+#		--with-os-vendor="$$(lsb_release -is)" \
+
+	$(MAKE) -C xorg-server
+
+	touch build-server-stamp
+
+
+build-indep: build-indep-stamp
+build-indep-stamp:  unix/config.status
+
+	# Add here commands to compile the indep part of the package.
+	#$(MAKE) doc
+	touch build-indep-stamp
+
+clean:
+	dh_testdir
+	dh_testroot
+	-rm -Rf $(CURDIR)/debian/tmp
+	rm -f build-arch-stamp build-indep-stamp #CONFIGURE-STAMP#
+
+	# Add here commands to clean up after the build process.
+	-rm -f config.log config.status config.cache config.guess config.sub
+	-rm -Rf buildtemp
+	-$(MAKE) -C common distclean
+	-$(MAKE) -C common clean
+	-$(MAKE) -C unix distclean
+	-$(MAKE) -C unix clean
+#ifneq "$(wildcard /usr/share/misc/config.sub)" ""
+#	cp -f /usr/share/misc/config.sub config.sub
+#endif
+#ifneq "$(wildcard /usr/share/misc/config.guess)" ""
+#	cp -f /usr/share/misc/config.guess config.guess
+#endif
+
+	rm -f xorg-server unix/xorg-server-1.* xorg-server_*
+	rm -rf xorg-server-1.*
+
+	dh_clean 
+
+install: install-indep install-arch
+install-indep:
+##	dh_testdir
+##	dh_testroot
+##	dh_clean -k -i 
+##	dh_installdirs -i
+##
+##	# Add here commands to install the indep part of the package into
+##	# debian/<package>-doc.
+##	#INSTALLDOC#
+##
+##	dh_install -i
+
+install-arch:
+	dh_testdir
+	dh_testroot
+	dh_clean -k -s 
+	dh_installdirs -s
+
+	# Add here commands to install the arch part of the package into 
+	# debian/tmp.
+	#$(MAKE) install prefix=$(CURDIR)/debian/vnc4/usr
+	mkdir -p $(CURDIR)/debian/tmp/usr/bin
+	mkdir -p $(CURDIR)/debian/tmp/usr/share/man/man1
+	mkdir -p $(CURDIR)/debian/tmp/usr/lib/xorg/modules/extensions
+	cd unix && ./vncinstall \
+		$(CURDIR)/debian/tmp/usr/bin \
+		$(CURDIR)/debian/tmp/usr/share/man \
+		$(CURDIR)/debian/tmp/usr/lib/xorg/modules/extensions
+	rename "s/vncviewer/xvncviewer/;" \
+		debian/tmp/usr/bin/* \
+		debian/tmp/usr/share/man/man1/*
+	rename "s/vnc/vnc4/;" \
+		debian/tmp/usr/bin/* \
+		debian/tmp/usr/share/man/man1/*
+	dh_install -s
+
+# Must not depend on anything. This is to be called by
+# binary-arch/binary-indep
+# in another 'make' thread.
+binary-common:
+	dh_testdir
+	dh_testroot
+	dh_installchangelogs 
+	dh_installdocs
+	dh_installexamples
+	dh_installmenu
+#	dh_installdebconf	
+#	dh_installlogrotate	
+#	dh_installemacsen
+#	dh_installpam
+#	dh_installmime
+#	dh_installinit
+#	dh_installcron
+#	dh_installinfo
+	dh_installman
+	dh_link
+	dh_fixperms
+	dh_strip
+	dh_compress 
+#	dh_perl
+#	dh_python
+	dh_makeshlibs
+	dh_installdeb
+	dh_shlibdeps
+	dh_gencontrol
+	dh_md5sums
+	dh_builddeb
+# Build architecture independant packages using the common target.
+binary-indep: build-indep install-indep
+##	$(MAKE) -f debian/rules DH_OPTIONS=-i binary-common
+
+# Build architecture dependant packages using the common target.
+binary-arch: build-arch install-arch
+	$(MAKE) -f debian/rules DH_OPTIONS=-a binary-common
+
+binary: binary-indep binary-arch
+.PHONY: build clean binary-indep binary-arch binary install install-indep install-arch 

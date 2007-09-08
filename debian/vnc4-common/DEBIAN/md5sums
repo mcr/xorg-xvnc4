@@ -1,0 +1,5 @@
+8b59a20afab4204b9dc289262d51ec5b  usr/bin/vnc4passwd
+9bbcf2434003920866457312857b7c77  usr/share/doc/vnc4-common/examples/vnc.conf.gz
+74b93952425388258a0f28c648676e98  usr/share/doc/vnc4-common/changelog.Debian.gz
+f7524182814462e45fed7dbb19374a3a  usr/share/doc/vnc4-common/copyright
+5933a3fbbb84c138edb9a520b744c3bb  usr/share/man/man1/vnc4passwd.1.gz

@@ -1,0 +1,14 @@
+#!/bin/sh -e
+
+if [ "$1" = "configure" ]; then
+    MAN=/usr/share/man/man1
+    BIN=/usr/bin
+    update-alternatives --install \
+	$BIN/vncpasswd        vncpasswd            $BIN/vnc4passwd 75 \
+	--slave \
+	$MAN/vncpasswd.1.gz   vncpasswd.1.gz       $MAN/vnc4passwd.1.gz
+fi
+
+#DEBHELPER#
+
+exit 0

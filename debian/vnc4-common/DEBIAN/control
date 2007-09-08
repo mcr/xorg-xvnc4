@@ -1,0 +1,20 @@
+Package: vnc4-common
+Version: 4.1.1+xorg1.0.2-0ubuntu4
+Section: x11
+Priority: optional
+Architecture: i386
+Depends: libc6 (>= 2.5-0ubuntu1), libgcc1 (>= 1:4.1.2), libstdc++6 (>= 4.1.2)
+Suggests: xvnc4viewer | vncviewer, vnc4server
+Conflicts: vnc-common (<< 3.3.7-6), vncserver (<< 3.3.6-1)
+Provides: vnc-common
+Installed-Size: 88
+Maintainer: Ola Lundqvist <opal@debian.org>
+Source: vnc4
+Description: Virtual network computing server software
+ VNC stands for Virtual Network Computing. It is, in essence, a remote
+ display system which allows you to view a computing `desktop' environment
+ not only on the machine where it is running, but from anywhere on the
+ Internet and from a wide variety of machine architectures.
+ .
+ It is implemented in a client/server model. This package provides common
+ utilities for the server and client packages.

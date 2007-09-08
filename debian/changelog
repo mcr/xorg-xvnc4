@@ -1,0 +1,143 @@
+vnc4 (4.1.1+xorg1.0.2-0ubuntu4) feisty; urgency=low
+
+  * debian/rules: fix default font paths.  (Closes LP#3593)
+
+ -- Kees Cook <kees@ubuntu.com>  Sun,  7 Jan 2007 08:21:30 -0800
+
+vnc4 (4.1.1+xorg1.0.2-0ubuntu3) feisty; urgency=low
+
+  * debian/patches/xorg-vnc-debian.patch: Modify to remove deprecated include
+    of asm/kbio.h, in lnx_{kbd,io}.c, fixes FTBFS on sparc.  (from
+    edgy-security)
+
+ -- Kees Cook <kees@ubuntu.com>  Sat,  6 Jan 2007 01:05:35 -0800
+
+vnc4 (4.1.1+xorg1.0.2-0ubuntu2) feisty; urgency=low
+
+  * SECURITY UPDATE: Fix password-bypassing exploit.
+  * common/rfb/SConnection.cxx: Confirm that the requested authentication
+    method is actually valid. Patch taken from 4.1.2.
+  * debian/control: Fix Build-Depends so that it will actually build.
+  * debian/rules: Fix bashisms.
+  * References:
+    - CVE-2006-2369
+
+ -- William Grant <william.grant@ubuntu.org.au>  Sat,  6 Jan 2007 12:08:32 +1100
+
+vnc4 (4.1.1+xorg1.0.2-0ubuntu1) dapper; urgency=low
+
+  * Reupload 4.1.1-0ubuntu4 as 4.1.1+xorg1.0.2-0ubuntu1; the former
+    was erroneously overwritten with a sync from unstable (still
+    based on Xfree86, not xorg).
+
+ -- Matthias Klose <doko@ubuntu.com>  Mon, 29 May 2006 13:28:04 +0200
+
+vnc4 (4.1.1-0ubuntu4) dapper; urgency=low
+
+  * Update xorg-server to 1.0.2-0ubuntu9.
+  * Apply the Ubuntu patches.
+  * Add xorg-server's build dependencies to the build depenencies.
+
+ -- Matthias Klose <doko@ubuntu.com>  Mon,  8 May 2006 13:29:03 +0000
+
+vnc4 (4.1.1-0ubuntu3) dapper; urgency=low
+
+  * Update xorg-server to 1.0.2.
+
+ -- Matthias Klose <doko@ubuntu.com>  Thu, 30 Mar 2006 01:01:03 +0200
+
+vnc4 (4.1.1-0ubuntu1) dapper; urgency=low
+
+  * Unknown changes.
+
+ -- Bjoern Brauel <bjoern@tuxnetwork.de>  Tue, 24 Jan 2006 01:01:03 +0200
+
+vnc4 (4.1.1-0ubuntu1) dapper; urgency=low
+
+  * New upstream version.
+
+ -- Matthias Klose <doko@ubuntu.com>  Thu,  5 Jan 2006 18:54:14 +0100
+
+vnc4 (4.0-8) unstable; urgency=medium
+
+  * Added alternative for vncconfig, closes: #291591.
+  * Added menu entry, closes: #288054.
+  * Modified the vncinstall script so that it chmod files so that root
+    can modify them. This allow dh_strip to strip them.
+
+ -- Ola Lundqvist <opal@debian.org>  Sat, 22 Jan 2005 10:55:33 +0100
+
+vnc4 (4.0-7) unstable; urgency=low
+
+  * Changed recommends of xfont-base to xfonts-base. Closes: #285483.
+  * Maintainer upload of -fPIC patch, closes: #283020.
+  * Now uses the work vncserver in the package description, closes: #284503.
+
+ -- Ola Lundqvist <opal@debian.org>  Sat, 25 Dec 2004 21:33:58 +0100
+
+vnc4 (4.0-6.1) unstable; urgency=high
+
+  * Non-maintainer upload.
+  * High-urgency upload for sarge-targetted RC bugfix.
+  * Make sure everything that's included in vnc.so is built with -fPIC,
+    closes: #283020
+
+ -- Steve Langasek <vorlon@debian.org>  Tue, 14 Dec 2004 04:57:48 -0800
+
+vnc4 (4.0-6) unstable; urgency=low
+
+  * Added x dependencies, closes: #282521.
+  * Closed wrong bug in last upload, closes: #273739.
+  * Set BuildGlxExt to YES in xc/config/cf/vnc.def, closes: #269765.
+  * Added patch from Hein Roehrig <debian-bts@hein.roehrig.name> to add
+    support for the -localhost option in x0vncserver as well.
+
+ -- Ola Lundqvist <opal@debian.org>  Thu, 25 Nov 2004 20:39:21 +0100
+
+vnc4 (4.0-5) unstable; urgency=low
+
+  * Changed vncserver start script so it starts x-terminal-emulator and
+    x-window-manager instead of xterm and twm, closes: #273976.
+  * Moved in functionality from tightvncserver script.
+    This means that the options -clean, -fp, -alwaysshared, -nevershared
+    -httpport and -basehttpport is added.
+  * Fixed description of vnc4server package, closes: #73739.
+
+ -- Ola Lundqvist <opal@debian.org>  Sun, 17 Oct 2004 20:58:47 +0200
+
+vnc4 (4.0-4) unstable; urgency=medium
+
+  * Fixed vncpasswd error in prerm of vnc4-common.
+  * Fixed x0vncserver error in prerm of vnc4server.
+  * Fixed vncviewer error in prerm of xvncviewer (was pointint at
+    xrealvncviewer instead xvnc4vewier).
+  * Added conflict with vnc-common << 3.3.7-6 because of
+    vncpasswd error there.
+
+ -- Ola Lundqvist <opal@debian.org>  Thu, 16 Sep 2004 08:32:12 +0200
+
+vnc4 (4.0-3) unstable; urgency=medium
+
+  * Added dependency on vnc-common from vnc4server, closes: #270588.
+
+ -- Ola Lundqvist <opal@debian.org>  Sat, 11 Sep 2004 11:59:23 +0200
+
+vnc4 (4.0-2) unstable; urgency=medium
+
+  * Now build libraries with -fPIC so vnc.so can be built properly,
+    closes: #266739.
+  * Removed tls build dep. Not needed.
+
+ -- Ola Lundqvist <opal@debian.org>  Thu, 19 Aug 2004 12:07:12 +0200
+
+vnc4 (4.0-1) unstable; urgency=low
+
+  * Initial Release, closes: #250579, #260157.
+    Used some descriptions from the vnc package.
+  * This release fix a couple of issues in realvnc version 3.
+    - Broken on ia64, closes: #233313.
+  * Added source tar file of XFree86 (X420src-1.tgz). This is needed
+    in order to build Xvnc and vnc.so. I added this tar-file to the
+    orig tarball too in the xsrc dir.
+
+ -- Ola Lundqvist <opal@debian.org>  Sun,  8 Aug 2004 14:54:54 +0200

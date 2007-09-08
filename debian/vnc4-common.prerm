@@ -1,0 +1,11 @@
+#!/bin/sh -e
+
+if [ "$1" = "remove" ] ; then
+    BIN=/usr/bin
+    update-alternatives --remove \
+	vncpasswd $BIN/vnc4passwd
+fi
+
+#DEBHELPER#
+
+exit 0

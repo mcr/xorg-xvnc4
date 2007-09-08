@@ -1,0 +1,59 @@
+Source: vnc4
+Section: x11
+Priority: optional
+Maintainer: Ola Lundqvist <opal@debian.org>
+Build-Depends: debhelper (>= 4.0.0), perl, zlib1g-dev, automake1.9, autoconf, xserver-xorg-dev, xutils, pkg-config, x11proto-bigreqs-dev, x11proto-composite-dev, x11proto-core-dev, x11proto-damage-dev, x11proto-evie-dev, x11proto-fixes-dev, x11proto-kb-dev (>= 1.0.1-1), x11proto-xinerama-dev, x11proto-randr-dev, x11proto-record-dev, x11proto-render-dev, x11proto-resource-dev, x11proto-scrnsaver-dev, x11proto-trap-dev, x11proto-video-dev, x11proto-xcmisc-dev, x11proto-xext-dev (>= 6.9.99.0-1), x11proto-xf86bigfont-dev, x11proto-xf86dga-dev, x11proto-xf86misc-dev, x11proto-xf86vidmode-dev, xtrans-dev, libxau-dev (>= 1:0.1.2-1), libxdmcp-dev (>= 1:0.1.3-2), libxfont-dev, libfontenc-dev, libxkbfile-dev (>= 7.0.0-1), x11proto-xf86dri-dev, libdrm-dev (>> 2.0), mesa-swx11-source (>> 6.4.1), x11proto-gl-dev (>= 1.4.1-1), libgl1-mesa-dev, libxmuu-dev (>= 1:6.2.3-1), libxext-dev (>= 1:6.4.3-1), libx11-dev (>= 1:6.2.1+cvs.20050722-1), libxrender-dev (>= 1:0.9.0-1), libxi-dev (>= 1:1.3.0-2), x11proto-dmx-dev, dpatch, libdmx-dev, libxpm-dev (>= 1:3.5.3-1), libxaw7-dev (>= 2:0.99.1-1), libxt-dev (>> 1:0.99.3+cvs.20051212), libxmu-dev (>= 2:0.99.1-1), libxtst-dev (>= 2:0.99.1-1), libxres-dev (>= 1:1.0.2+0.99.1-1), libfreetype6-dev, flex
+Standards-Version: 3.6.1
+
+Package: vnc4server
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, vnc4-common | vnc-common, xbase-clients, x11-common, xfonts-base
+Provides: vnc-server, x0vnc-server
+Suggests: vnc-java
+Description: Virtual network computing server software
+ VNC stands for Virtual Network Computing. It is, in essence, a remote
+ display system which allows you to view a computing `desktop' environment
+ not only on the machine where it is running, but from anywhere on the
+ Internet and from a wide variety of machine architectures.
+ .
+ This package provides a vncserver to which X clients can connect and the
+ server generates a display that can be viewed with a vncviewer.
+ .
+ It contains an X server connector so clients can connect to your local X
+ desktop directly.
+ .
+ Note: This server does not need a display. You need a vncviewer to see
+ something. This viewer may also be on a computer running other operating
+ systems.
+
+Package: xvnc4viewer
+Section: net
+Architecture: any
+Provides: vnc-viewer
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Suggests: vnc4-common | vnc-common
+Description: Virtual network computing client software for X
+ VNC stands for Virtual Network Computing. It is, in essence, a remote
+ display system which allows you to view a computing `desktop' environment
+ not only on the machine where it is running, but from anywhere on the
+ Internet and from a wide variety of machine architectures.
+ .
+ It is implemented in a client/server model. This package provides a vncclient
+ for X, with this you can connect to a vncserver somewhere in the network
+ and display its content in a window. There are vncserver available for X
+ and for Win95/NT.
+
+Package: vnc4-common
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Suggests: xvnc4viewer|vncviewer, vnc4server
+Provides: vnc-common
+Conflicts: vnc-common (<< 3.3.7-6), vncserver (<< 3.3.6-1)
+Description: Virtual network computing server software
+ VNC stands for Virtual Network Computing. It is, in essence, a remote
+ display system which allows you to view a computing `desktop' environment
+ not only on the machine where it is running, but from anywhere on the
+ Internet and from a wide variety of machine architectures.
+ .
+ It is implemented in a client/server model. This package provides common
+ utilities for the server and client packages.

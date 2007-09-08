@@ -1,0 +1,26 @@
+Package: vnc4server
+Version: 4.1.1+xorg1.0.2-0ubuntu4
+Section: x11
+Priority: optional
+Architecture: i386
+Depends: libc6 (>= 2.5-0ubuntu1), libfontenc1, libgcc1 (>= 1:4.1.2), libice6 (>= 1:1.0.0), libsm6, libstdc++6 (>= 4.1.2), libx11-6, libxau6, libxdmcp6, libxext6, libxfont1, libxtst6, zlib1g (>= 1:1.2.1), vnc4-common | vnc-common, xbase-clients, x11-common, xfonts-base
+Suggests: vnc-java
+Provides: vnc-server, x0vnc-server
+Installed-Size: 2448
+Maintainer: Ola Lundqvist <opal@debian.org>
+Source: vnc4
+Description: Virtual network computing server software
+ VNC stands for Virtual Network Computing. It is, in essence, a remote
+ display system which allows you to view a computing `desktop' environment
+ not only on the machine where it is running, but from anywhere on the
+ Internet and from a wide variety of machine architectures.
+ .
+ This package provides a vncserver to which X clients can connect and the
+ server generates a display that can be viewed with a vncviewer.
+ .
+ It contains an X server connector so clients can connect to your local X
+ desktop directly.
+ .
+ Note: This server does not need a display. You need a vncviewer to see
+ something. This viewer may also be on a computer running other operating
+ systems.
