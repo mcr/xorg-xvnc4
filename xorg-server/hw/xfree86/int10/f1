@@ -1,0 +1,12 @@
+-IDIR/include
+-IDIR/Xext
+-IDIR/composite
+-IDIR/damageext
+-IDIR/xfixes
+-IDIR/Xi
+-IDIR/mi
+-IDIR/miext/shadow
+-IDIR/miext/damage
+-IDIR/render
+-IDIR/randr
+-IDIR/fb

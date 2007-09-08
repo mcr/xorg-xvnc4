@@ -1,0 +1,16 @@
+usr/bin/Xorg
+usr/bin/ioport
+usr/bin/gtf
+usr/bin/pcitweak
+usr/bin/scanpci
+usr/lib/xorg/modules/*.so
+usr/lib/xorg/modules/extensions/*.so
+usr/lib/xorg/modules/linux/*.so
+usr/lib/xorg/modules/fonts/*.so
+usr/lib/xorg/modules/multimedia/*.so
+usr/share/man/man1/Xorg.1x
+usr/share/man/man1/Xserver.1x
+usr/share/man/man1/gtf.1x
+usr/share/man/man1/pcitweak.1x
+usr/share/man/man1/scanpci.1x
+usr/share/man/man5/xorg.conf.5x

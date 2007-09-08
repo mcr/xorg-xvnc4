@@ -1,0 +1,31 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 990_ubuntu_fix_security_policy_path.patch.dpatch by  <fabbione@gordian.int.fabbione.net>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: No description.
+
+@DPATCH@
+diff -urNad xorg-server-1.0.2~/Xext/Makefile.am xorg-server-1.0.2/Xext/Makefile.am
+--- xorg-server-1.0.2~/Xext/Makefile.am	2006-04-04 15:25:51.000000000 +0200
++++ xorg-server-1.0.2/Xext/Makefile.am	2006-04-04 15:52:58.000000000 +0200
+@@ -70,7 +70,7 @@
+ if XCSECURITY   
+ BUILTIN_SRCS += $(XCSECURITY_SRCS)
+ 
+-SERVERCONFIGdir = $(sysconfdir)/xserver
++SERVERCONFIGdir = $(sysconfdir)/X11/xserver
+ SERVERCONFIG_DATA = SecurityPolicy
+ AM_CFLAGS += -DDEFAULTPOLICYFILE=\"$(SERVERCONFIGdir)/SecurityPolicy\"
+ endif
+diff -urNad xorg-server-1.0.2~/Xext/Makefile.in xorg-server-1.0.2/Xext/Makefile.in
+--- xorg-server-1.0.2~/Xext/Makefile.in	2006-04-04 15:25:51.000000000 +0200
++++ xorg-server-1.0.2/Xext/Makefile.in	2006-04-04 15:52:58.000000000 +0200
+@@ -611,7 +611,7 @@
+ 
+ # Security extension: multi-level security to protect clients from each other
+ XCSECURITY_SRCS = security.c
+-@XCSECURITY_TRUE@SERVERCONFIGdir = $(sysconfdir)/xserver
++@XCSECURITY_TRUE@SERVERCONFIGdir = $(sysconfdir)/X11/xserver
+ @XCSECURITY_TRUE@SERVERCONFIG_DATA = SecurityPolicy
+ 
+ # X EVent Interception Extension: allows accessibility helpers & composite

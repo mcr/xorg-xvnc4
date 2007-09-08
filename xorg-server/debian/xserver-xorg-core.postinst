@@ -1,0 +1,5 @@
+#!/bin/sh
+
+if [ -x /sbin/update-linux-hardened-support ]; then
+  /sbin/update-linux-hardened-support || true
+fi

@@ -1,0 +1,225 @@
+xorg-server (1:1.0.2-0ubuntu9) dapper; urgency=low
+
+  * Add 1680x1050 60 and 85Hz Modelines. Thanks to Bart Verwilst for the data.
+  (Closes Ubuntu: #6096)
+
+ -- Fabio M. Di Nitto <fabbione@ubuntu.com>  Fri, 05 May 2006 12:38:22 +0200
+
+xorg-server (1:1.0.2-0ubuntu8) dapper; urgency=low
+
+  * Fix "XCB rendertest crashes server":
+    - Add patch 001-CVE-2006-1526.patch.dpatch.
+  (CVE-2006-1526)
+
+ -- Fabio M. Di Nitto <fabbione@ubuntu.com>  Wed, 03 May 2006 09:01:09 +0200
+
+xorg-server (1:1.0.2-0ubuntu7) dapper; urgency=low
+
+  * Ship again xorg.conf(5)
+  (Closes Ubuntu: #33703)
+
+ -- Fabio M. Di Nitto <fabbione@ubuntu.com>  Mon, 01 May 2006 13:37:40 +0200
+
+xorg-server (1:1.0.2-0ubuntu6) dapper; urgency=low
+
+  * Fix severe internal memory corruption:
+    - Add patch: 000-fix-read-kernel-mapping.patch.dpatch.
+    (freedesktop bugzilla: #6472)
+
+ -- Fabio M. Di Nitto <fabbione@ubuntu.com>  Fri, 21 Apr 2006 08:07:33 +0200
+
+xorg-server (1:1.0.2-0ubuntu5) dapper; urgency=low
+
+  * Fix CPU load when using -sharevts:
+    - Add patch: 991_sharevts-load-cpu.patch
+    (Thanks for the initial patch to Michael Witrant)
+    (Closes Ubuntu: #33611)
+
+ -- Fabio M. Di Nitto <fabbione@ubuntu.com>  Mon, 10 Apr 2006 13:30:26 +0200
+
+xorg-server (1:1.0.2-0ubuntu4) dapper; urgency=low
+
+  * Fix SecurityPolicy path to /etc/X11/xserver/SecurityPolicy
+    and ship an example. NOTE: this file is NOT installed by default,
+    the WARNING you see in Xorg.0.log is an harmless WARNING.
+    Add patch: 990_ubuntu_fix_security_policy_path.patch.
+    (Close Ubuntu: #31608)
+
+  * Readd manpages to the different packages.
+
+  * Ship again ioport, gtf, pcitweak and scanpci.
+    (Closes Ubuntu: #37720)
+
+ -- Fabio M. Di Nitto <fabbione@ubuntu.com>  Tue, 04 Apr 2006 16:33:00 +0200
+
+xorg-server (1:1.0.2-0ubuntu3) dapper; urgency=low
+
+  * What about shipping xorg-server.m4 to make developer life easier?
+
+ -- Fabio M. Di Nitto <fabbione@ubuntu.com>  Thu, 23 Mar 2006 10:32:55 +0100
+
+xorg-server (1:1.0.2-0ubuntu2) dapper; urgency=low
+
+  * xserver-xorg-dev Depends: x11proto-randr-dev.
+  (Closes Ubuntu: #35594)
+
+ -- Fabio M. Di Nitto <fabbione@ubuntu.com>  Wed, 22 Mar 2006 08:09:46 +0100
+
+xorg-server (1:1.0.2-0ubuntu1) dapper; urgency=low
+
+  * New upstream release:
+    - Drop patches:
+      + CVE-2006-0745
+      + add-missing-sparc-include
+      + fix-backtrace
+      + fix-crash-on-null-addr
+
+  * UVF execption granted by mdz.
+
+ -- Fabio M. Di Nitto <fabbione@ubuntu.com>  Tue, 21 Mar 2006 05:39:01 +0100
+
+xorg-server (1:1.0.1-0ubuntu8) dapper; urgency=low
+
+  * [SECURITY] Fix CVE-2006-0745.
+
+ -- Fabio M. Di Nitto <fabbione@ubuntu.com>  Tue, 21 Mar 2006 05:33:50 +0100
+
+xorg-server (1:1.0.1-0ubuntu7) dapper; urgency=low
+
+  * debian/control:
+    - xvfb Depends on xfonts-base too, fix pointed by fabbione
+
+ -- Sebastien Bacher <seb128@canonical.com>  Fri,  3 Mar 2006 22:21:56 +0100
+
+xorg-server (1:1.0.1-0ubuntu6) dapper; urgency=low
+
+  * debian/control:
+    - xvfb Depends on xauth instead of Recommends it
+
+ -- Sebastien Bacher <seb128@canonical.com>  Fri, 17 Feb 2006 16:39:49 +0100
+
+xorg-server (1:1.0.1-0ubuntu5) dapper; urgency=low
+
+  * Add missing include on sparc. Fix FTBFS.
+
+ -- Fabio M. Di Nitto <fabbione@ubuntu.com>  Wed, 01 Feb 2006 13:45:41 +0100
+
+xorg-server (1:1.0.1-0ubuntu4) dapper; urgency=low
+
+  * Backport from upstream HEAD at Daniel's request:
+    - Add forgotten HAVE_BACKTRACE define, so that we actually get
+      backtraces when Xorg segfaults.
+
+ -- Colin Watson <cjwatson@ubuntu.com>  Fri, 27 Jan 2006 13:47:56 +0000
+
+xorg-server (1:1.0.1-0ubuntu3) dapper; urgency=low
+
+  * Depend on x11-common rather than xorg-common and xserver-common
+
+ -- Tollef Fog Heen <tfheen@ubuntu.com>  Wed, 18 Jan 2006 17:13:12 +0100
+
+xorg-server (1:1.0.1-0ubuntu2) dapper; urgency=low
+
+  * Add flex to build-deps, fixing FTBFS.
+
+ -- Tollef Fog Heen <tfheen@ubuntu.com>  Wed, 18 Jan 2006 12:34:03 +0100
+
+xorg-server (1:1.0.1-0ubuntu1) dapper; urgency=low
+
+  * New upstream release.
+
+ -- Daniel Stone <daniel.stone@ubuntu.com>  Fri,  6 Jan 2006 08:00:52 +1100
+
+xorg-server (1:1.0.0-0ubuntu1) dapper; urgency=low
+
+  * New upstream release.
+    + fbCompositeGeneral is now around 97.3% less stuffed (closes:
+      Ubuntu#20286).
+    + 'Fix' mouse issues in the DIX by adding XFree86Server defines (sigh;
+      closes: Ubuntu#20200).
+    + Fix Emulate3Buttons mouse posting (closes: Ubuntu#11308).
+  * Bump Build-Depends on libxt-dev (appdefaultdir), libdrm-dev (libdrm2), and
+    mesa-swrast-source (new files).
+  * Add --with-fontdir and scotch --with-default-font-path to fix font paths
+    for non-Xorg servers (closes: Ubuntu#20157).
+  * Fix path to SecurityPolicy and RGB_DB.
+  * Move update-linux-hardened-support call to xserver-xorg-core postinst
+    (from xserver-xorg postinst).
+  * Add patch to os/access.c so we don't crash on a null-addressed interface
+    (closes: Ubuntu#20414).
+
+ -- Daniel Stone <daniel.stone@ubuntu.com>  Tue, 13 Dec 2005 07:27:13 +1100
+
+xorg-server (1:0.99.3-0ubuntu6) dapper; urgency=low
+
+  * Fix xserver-xorg-dev Depends field to only depend on the headers this
+    this package actually uses.
+  * Re-add xvfb-run to xfvb (closes: Ubuntu#20157).
+
+ -- Daniel Stone <daniel.stone@ubuntu.com>  Mon,  5 Dec 2005 15:04:14 +1100
+
+xorg-server (1:0.99.3-0ubuntu5) dapper; urgency=low
+
+  * Add -ffunction-sections where needed
+  * Depend: xserver-common: needed for dexconf and /usr/X11R6/bin/X
+
+ -- LaMont Jones <lamont@ubuntu.com>  Sat, 26 Nov 2005 05:15:36 +0000
+
+xorg-server (1:0.99.3-0ubuntu4) dapper; urgency=low
+
+  * Add two more dependencies to build the other half of the video drivers:
+    - x11proto-xext-dev, x11proto-video-dev
+
+ -- Adam Conrad <adconrad@ubuntu.com>  Fri, 25 Nov 2005 02:36:44 +1100
+
+xorg-server (1:0.99.3-0ubuntu3) dapper; urgency=low
+
+  * Add a few dependencies to xorg-server-dev as the path of least resistance
+    to get all the various input and video drivers to build again:
+    - For the video drivers: x11proto-randr-dev, x11proto-render-dev,
+      x11proto-fonts-dev, x11proto-xf86dri-dev, libdrm-dev
+    - For the input drivers: x11proto-core-dev, x11proto-input-dev,
+      x11proto-randr-dev (why do input drivers want randr?)
+
+ -- Adam Conrad <adconrad@ubuntu.com>  Thu, 24 Nov 2005 18:51:25 +1100
+
+xorg-server (1:0.99.3-0ubuntu2) dapper; urgency=low
+
+  * Add missing libfreetype6-dev build-depends.
+
+ -- Daniel Stone <daniel.stone@ubuntu.com>  Thu, 24 Nov 2005 10:26:44 +1100
+
+xorg-server (1:0.99.3-0ubuntu1) dapper; urgency=low
+
+  * New upstream release.
+
+ -- Daniel Stone <daniel.stone@ubuntu.com>  Mon, 21 Nov 2005 14:13:41 +1100
+
+xorg-server (1:0.99.2+cvs.20051025-3) dapper; urgency=low
+
+  * Version mesa-swrast-source Build-Dep to 6.4.0 or higher, so GLcore is a
+    little less crash-happy (e.g. when moving your glxgears window).
+  * Export /usr/share/xserver-xorg/serverabiver to xserver-xorg-dev, which
+    describes the relationship needed from a driver on xserver-xorg-core.
+
+ -- Daniel Stone <daniel.stone@ubuntu.com>  Fri, 28 Oct 2005 13:00:26 +1000
+
+xorg-server (1:0.99.2+cvs.20051025-2) dapper; urgency=low
+
+  * Add Build-Deps on libxaw7-dev, libxmu-dev, libxt-dev, libxpm-dev,
+    libx11-dev, libxtst-dev, and libxres-dev for DMX utils.
+
+ -- Daniel Stone <daniel.stone@ubuntu.com>  Wed, 26 Oct 2005 14:34:40 +1000
+
+xorg-server (1:0.99.2+cvs.20051025-1) dapper; urgency=low
+
+  * Update to new upstream version.
+  * All applicable patches have been committed upstream, bar #989 and #990.
+
+ -- Daniel Stone <daniel.stone@ubuntu.com>  Thu, 20 Oct 2005 10:26:33 +1000
+
+xorg-server (1:0.99.0+cvs.20050901-1) breezy; urgency=low
+
+  * First xorg-server release.
+
+ -- Daniel Stone <daniel.stone@ubuntu.com>  Wed,  6 Jul 2005 15:48:17 +1000

@@ -1,0 +1,17 @@
+Patches applied in the Debian version of :
+
+debian/patches/000-fix-read-kernel-mapping.patch.dpatch (<fabbione@gordian.int.fabbione.net>):
+  No description.
+
+debian/patches/001-CVE-2006-1526.patch.dpatch (<fabbione@gordian.int.fabbione.net>):
+  No description.
+
+debian/patches/989_ubuntu_add_extra_modelines_from_xorg.patch (<fabbione@gordian.int.fabbione.net>):
+  No description.
+
+debian/patches/990_ubuntu_fix_security_policy_path.patch (<fabbione@gordian.int.fabbione.net>):
+  No description.
+
+debian/patches/991_sharevts-load-cpu.patch.dpatch (<fabbione@gordian.int.fabbione.net>):
+  No description.
+

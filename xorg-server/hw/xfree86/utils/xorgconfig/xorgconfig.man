@@ -1,0 +1,22 @@
+.\" $XdotOrg: $
+.\" $XFree86: xc/programs/Xserver/hw/xfree86/xf86config/xorgconfig.man,v 1.5 2001/11/01 23:35:34 dawes Exp $
+.TH xorgconfig 1 "xorg-server 1.2.0" "X Version 11"
+.SH NAME
+xorgconfig \- generate an xorg.conf file
+.SH SYNOPSIS
+.B xorgconfig
+.SH DESCRIPTION
+\fIxorgconfig\fP is an interactive program for generating an xorg.conf file
+for use with Xorg X servers.
+.PP
+Note that the default name used by \fIxorgconfig\fP for the xorg.conf file
+is system-dependent.  For instance, on OS/2, XConfig is used.
+.SH FILES
+.TP
+.I /usr/lib/X11/Cards
+Video cards database
+.SH "SEE ALSO"
+Xorg(1), xorg.conf(5), xorgcfg(1), reconfig(1)
+.SH AUTHOR
+Harm Hanemaayer.
+.\" $TOG: xf86conf.man /main/9 1997/07/19 10:53:08 kaleb $
