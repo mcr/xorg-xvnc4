@@ -73,7 +73,7 @@ libvnc_la_OBJECTS = $(am_libvnc_la_OBJECTS)
 libvnccommon_la_LIBADD =
 am_libvnccommon_la_OBJECTS = buildtime.lo \
 	libvnccommon_la-vncExtInit.lo libvnccommon_la-vncHooks.lo \
-	libvnccommon_la-XserverDesktop.lo
+	Xvnc-randr.lo libvnccommon_la-XserverDesktop.lo
 libvnccommon_la_OBJECTS = $(am_libvnccommon_la_OBJECTS)
 binPROGRAMS_INSTALL = $(INSTALL_PROGRAM)
 PROGRAMS = $(bin_PROGRAMS)
@@ -586,6 +586,7 @@ libvnccommon_la_SOURCES = \
 		vncExtInit.h      \
 		vncHooks.cc       \
 		vncHooks.h        \
+		Xvnc-randr.c      \
 		XserverDesktop.cc \
 		XserverDesktop.h
 
@@ -785,6 +786,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/Xvnc-dpmsstubs.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/Xvnc-fbcmap.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/Xvnc-miinitext.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/Xvnc-randr.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/Xvnc-stubs.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/Xvnc-xvnc.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/buildtime.Plo@am__quote@

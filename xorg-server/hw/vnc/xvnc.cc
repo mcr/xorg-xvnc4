@@ -79,6 +79,8 @@ extern "C" {
                             unsigned long, char*);
   extern void cfb32GetImage(DrawablePtr, int, int, int, int, unsigned int,
                             unsigned long, char*);
+  extern Bool vncRandRInit (ScreenPtr pScreen);
+
 }
 
 #define XVNCVERSION "Free Edition 4.1.2"
@@ -894,6 +896,8 @@ static Bool vfbScreenInit(int index, ScreenPtr pScreen, int argc, char** argv)
   miInitializeBackingStore(pScreen);
   pScreen->backingStoreSupport = Always;
 #endif
+
+  vncRandRInit(pScreen);
 
   return ret;
 

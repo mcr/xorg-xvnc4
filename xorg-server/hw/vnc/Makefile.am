@@ -6,6 +6,7 @@ libvnccommon_la_SOURCES = \
 		vncExtInit.h      \
 		vncHooks.cc       \
 		vncHooks.h        \
+		Xvnc-randr.c      \
 		XserverDesktop.cc \
 		XserverDesktop.h
 
