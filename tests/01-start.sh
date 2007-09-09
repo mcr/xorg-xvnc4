@@ -15,11 +15,23 @@ xterm -display :30 -e 'xrandr >'$tdir'/xrandr.txt 2>&1; exit'
 
 kill $xvncpid
 
-cp $tdir/xdpyinfo.txt NEW/start1-xdpyinfo-out.txt
-diff $tdir/xdpyinfo.txt start1-xdpyinfo-out.txt >DIFF/start1-xdpyinfo-out.txt
+cp $tdir/xdpyinfo.txt NEW/01-xdpyinfo-out.txt
+if diff $tdir/xdpyinfo.txt 01-xdpyinfo-out.txt >DIFF/01-xdpyinfo-out.txt
+then
+	:
+else	
+	echo FAILED on dpyinfo
+	exit 1
+fi
 
-cp $tdir/xrandr.txt   NEW/start1-xrandr-out.txt
-diff $tdir/xrandr.txt start1-xrandr-out.txt >DIFF/start1-xrandr-out.txt
+cp $tdir/xrandr.txt   NEW/01-xrandr-out.txt
+if diff $tdir/xrandr.txt 01-xrandr-out.txt >DIFF/01-xrandr-out.txt
+then
+	echo PASSED.
+else
+	echo FAILED on xrandr
+	exit 1
+fi
 
 rm -rf $tdir
 

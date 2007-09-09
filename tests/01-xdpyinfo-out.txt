@@ -13,7 +13,7 @@ supported pixmap formats:
     depth 16, bits_per_pixel 16, scanline_pad 32
 keycode range:    minimum 8, maximum 255
 focus:  PointerRoot
-number of extensions:    22
+number of extensions:    23
     BIG-REQUESTS
     DAMAGE
     DEC-XTRAP
