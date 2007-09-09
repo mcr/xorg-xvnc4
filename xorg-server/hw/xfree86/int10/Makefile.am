@@ -38,7 +38,7 @@ libint10_la_SOURCES = \
 endif
 
 if INT10_STUB
-AM_CFLAGS = $(I386_VIDEO_CFLAGS) -D_VM86_LINUX $(XORG_CFLAGS) $(EXTRA_CFLAGS)
+AM_CFLAGS = $(I386_VIDEO_CFLAGS) -D_VM86_LINUX -I${srcdir}/../../hw/xfree86/common -I${srcdir}/../../hw/xfree86/os-support $(XORG_CFLAGS) $(EXTRA_CFLAGS)
 libint10_la_SOURCES = stub.c xf86int10module.c
 endif
 
