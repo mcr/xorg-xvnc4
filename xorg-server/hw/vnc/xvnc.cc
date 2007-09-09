@@ -65,6 +65,7 @@ extern "C" {
 #include "miline.h"
 #include "inputstr.h"
 #include "keysym.h"
+#include "vnc.h"
   extern int defaultColorVisualClass;
   extern char buildtime[];
 #undef class
@@ -79,7 +80,6 @@ extern "C" {
                             unsigned long, char*);
   extern void cfb32GetImage(DrawablePtr, int, int, int, int, unsigned int,
                             unsigned long, char*);
-  extern Bool vncRandRInit (ScreenPtr pScreen);
 
 }
 
@@ -897,7 +897,7 @@ static Bool vfbScreenInit(int index, ScreenPtr pScreen, int argc, char** argv)
   pScreen->backingStoreSupport = Always;
 #endif
 
-  vncRandRInit(pScreen);
+  vncRandRInit(pScreen); 
 
   return ret;
 
