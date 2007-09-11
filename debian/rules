@@ -54,52 +54,8 @@ build-java-stamp: build-arch-stamp
 	touch build-java-stamp
 
 build-server-stamp: build-arch-stamp
-	rm -rf xorg-xserver*
-	dpkg-source -x ./xsrc/xorg-server_*dsc
-	cd xorg-server-1.0.2 && debian/rules patch
-	cd xorg-server-1.0.2 && patch -p1 < ../debian/patches/xorg-vnc-debian.patch
-	ln -sf xorg-server-1.0.2 xorg-server
-	cd unix && ln -s ../xorg-server-1.0.2 xorg-server-1.0.2
-	cp -a unix/xc/programs/Xserver/vnc/Xvnc/xvnc.cc \
-		unix/xc/programs/Xserver/Xvnc.man \
-		unix/xc/programs/Xserver/vnc/*.h \
-		unix/xc/programs/Xserver/vnc/*.cc \
-		xorg-server-*/hw/vnc/
-	cp -a xorg-server-*/cfb/cfb.h xorg-server-*/hw/vnc
-	cp -a xorg-server-*/fb/fb.h xorg-server-*/hw/vnc
-	cp -a xorg-server-*/fb/fbrop.h xorg-server-*/hw/vnc
-	sed -i -e 's,xor,c_xor,' -e 's,and,c_and,' \
-		xorg-server-*/hw/vnc/cfb.h \
-		xorg-server-*/hw/vnc/fb.h \
-		xorg-server-*/hw/vnc/fbrop.h
-	cd xorg-server && automake-1.9
-	cd xorg-server && autoconf
-	cd xorg-server && ./configure \
-		--enable-xorg \
-		--disable-dependency-tracking \
-		--disable-xprint \
-		--disable-static \
-		--enable-composite \
-		--with-rgb-path=/etc/X11/rgb \
-		--with-xkb-output=/var/lib/xkb \
-		--with-fontdir=/usr/share/fonts/X11 \
-		--disable-xorgcfg \
-		--disable-xorgconfig \
-		--disable-dmx \
-		--disable-lbx \
-		--enable-xdmcp \
-		--disable-xevie \
-		--disable-dri \
-		--with-int10=stub \
-		--prefix=/usr --mandir=\$${prefix}/share/man \
-		--infodir=\$${prefix}/share/info --sysconfdir=/etc \
-		--localstatedir=/var $(confflags) 
-
-#		--with-os-name="$$(lsb_release -ds)" \
-#		--with-os-vendor="$$(lsb_release -is)" \
-
+	cd xorg-server && ./c.sh
 	$(MAKE) -C xorg-server
-
 	touch build-server-stamp
 
 

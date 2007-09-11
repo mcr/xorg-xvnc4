@@ -1,3 +1,9 @@
+vnc4 (4.1.2+xorg1.2.0-thintropy) feisty; urgency=low
+
+  * many changes to Xvnc to permit resizing.
+
+ -- Michael Richardson <mcr@xdsinc.net>  Mon, 10 Sep 2007 23:26:03 -0400
+
 vnc4 (4.1.1+xorg1.0.2-0ubuntu4) feisty; urgency=low
 
   * debian/rules: fix default font paths.  (Closes LP#3593)
