@@ -208,6 +208,17 @@ void vncExtensionInit()
   }
 }
 
+extern "C" {
+  void vncResizeServer(int num)
+  {
+    ScreenPtr sptr = screenInfo.screens[num];
+    XserverDesktop *dptr = desktop[num];
+    
+    dptr->setXandY(sptr->width, sptr->height);
+    return;
+  }
+}
+
 static void vncResetProc(ExtensionEntry* extEntry)
 {
 }

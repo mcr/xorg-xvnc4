@@ -68,6 +68,8 @@ public:
   void addClient(network::Socket* sock, bool reverse);
   void disconnectClients();
 
+  void setXandY(unsigned int x, unsigned int y);
+
   // QueryConnect methods called from X server code
   // getQueryTimeout()
   //   Returns the timeout associated with a particular
@@ -104,12 +106,15 @@ public:
                                                         const char* userName,
                                                         char** reason);
 
+  int getStride() const { return strideX_; }
+
 private:
   void setColourMapEntries(int firstColour, int nColours);
   static CARD32 deferredUpdateTimerCallback(OsTimerPtr timer, CARD32 now,
                                             pointer arg);
   void deferUpdate();
   ScreenPtr pScreen;
+  int       strideX_;
   OsTimerPtr deferredUpdateTimer, dummyTimer;
   rfb::VNCServerST* server;
   rfb::HTTPServer* httpServer;

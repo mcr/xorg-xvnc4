@@ -159,6 +159,8 @@ vncRandRSetConfig (ScreenPtr	    pScreen,
 	pScreen->width =w;
 	pScreen->height=h;
 
+	vncResizeServer(0);
+
 	fprintf(stderr, "resized to %ux%u\n", w,h);
 	return TRUE;
 }

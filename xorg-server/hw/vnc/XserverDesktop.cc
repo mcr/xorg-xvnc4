@@ -186,12 +186,12 @@ XserverDesktop::XserverDesktop(ScreenPtr pScreen_,
   format.greenMax   = vis->greenMask >> format.greenShift;
   format.blueMax    = vis->blueMask  >> format.blueShift;
 
-  width_ = pScreen->width;
-  height_ = pScreen->height;
+  strideX_ = pScreen->width;
+  setXandY(pScreen->width, pScreen->height);
   if (fbptr)
     data = (rdr::U8*)fbptr;
   else
-    data = new rdr::U8[pScreen->width * pScreen->height * (format.bpp/8)];
+    data = new rdr::U8[strideX_ * pScreen->height * (format.bpp/8)];
   colourmap = this;
 
   serverReset(pScreen);
@@ -212,6 +212,12 @@ XserverDesktop::~XserverDesktop()
   TimerFree(dummyTimer);
   delete httpServer;
   delete server;
+}
+
+void XserverDesktop::setXandY(unsigned int x, unsigned int y)
+{
+  width_  = x;
+  height_ = y;
 }
 
 void XserverDesktop::serverReset(ScreenPtr pScreen_)
@@ -714,7 +720,7 @@ void XserverDesktop::grabRegion(const rfb::Region& region)
   grabbing = true;
 
   int bytesPerPixel = format.bpp/8;
-  int bytesPerRow = pScreen->width * bytesPerPixel;
+  int bytesPerRow = getStride() * bytesPerPixel;
 
   std::vector<rfb::Rect> rects;
   std::vector<rfb::Rect>::iterator i;
