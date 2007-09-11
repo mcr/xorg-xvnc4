@@ -1,19 +1,19 @@
  SZ:    Pixels          Physical       Refresh
 *0   1024 x 768    ( 260mm x 195mm )  *50  
- 1    624 x 464    ( 260mm x 195mm )   50  
- 2    632 x 472    ( 260mm x 195mm )   50  
- 3    640 x 480    ( 260mm x 195mm )   50  
- 4    704 x 384    ( 260mm x 195mm )   50  
- 5    712 x 392    ( 260mm x 195mm )   50  
- 6    720 x 400    ( 260mm x 195mm )   50  
- 7    784 x 584    ( 260mm x 195mm )   50  
- 8    792 x 592    ( 260mm x 195mm )   50  
- 9    800 x 600    ( 260mm x 195mm )   50  
- 10   816 x 608    ( 260mm x 195mm )   50  
- 11   824 x 616    ( 260mm x 195mm )   50  
- 12   832 x 624    ( 260mm x 195mm )   50  
- 13  1008 x 752    ( 260mm x 195mm )   50  
- 14  1016 x 760    ( 260mm x 195mm )   50  
+ 1   1008 x 752    ( 260mm x 195mm )   50  
+ 2   1016 x 760    ( 260mm x 195mm )   50  
+ 3    816 x 608    ( 260mm x 195mm )   50  
+ 4    824 x 616    ( 260mm x 195mm )   50  
+ 5    832 x 624    ( 260mm x 195mm )   50  
+ 6    784 x 584    ( 260mm x 195mm )   50  
+ 7    792 x 592    ( 260mm x 195mm )   50  
+ 8    800 x 600    ( 260mm x 195mm )   50  
+ 9    704 x 384    ( 260mm x 195mm )   50  
+ 10   712 x 392    ( 260mm x 195mm )   50  
+ 11   720 x 400    ( 260mm x 195mm )   50  
+ 12   624 x 464    ( 260mm x 195mm )   50  
+ 13   632 x 472    ( 260mm x 195mm )   50  
+ 14   640 x 480    ( 260mm x 195mm )   50  
 Current rotation - normal
 Current reflection - none
 Rotations possible - normal 

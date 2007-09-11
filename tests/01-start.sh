@@ -10,13 +10,14 @@ sleep 3
 
 xterm -display :30 -e 'echo started >'$tdir'/started.txt; exit' 
 
-xterm -display :30 -e 'xdpyinfo >'$tdir'/xdpyinfo.txt 2>&1; exit' 
-xterm -display :30 -e 'xrandr >'$tdir'/xrandr.txt 2>&1; exit' 
+DISPLAY=:30 export DISPLAY
+
+xdpyinfo -display :30 >NEW/01-xdpyinfo-out.txt 2>&1
+xrandr >NEW/01-xrandr-out.txt 2>&1
 
 kill $xvncpid
 
-cp $tdir/xdpyinfo.txt NEW/01-xdpyinfo-out.txt
-if diff $tdir/xdpyinfo.txt 01-xdpyinfo-out.txt >DIFF/01-xdpyinfo-out.txt
+if diff NEW/01-xdpyinfo-out.txt 01-xdpyinfo-out.txt >DIFF/01-xdpyinfo-out.txt
 then
 	:
 else	
@@ -24,8 +25,7 @@ else
 	exit 1
 fi
 
-cp $tdir/xrandr.txt   NEW/01-xrandr-out.txt
-if diff $tdir/xrandr.txt 01-xrandr-out.txt >DIFF/01-xrandr-out.txt
+if diff NEW/01-xrandr-out.txt 01-xrandr-out.txt >DIFF/01-xrandr-out.txt
 then
 	echo PASSED.
 else
