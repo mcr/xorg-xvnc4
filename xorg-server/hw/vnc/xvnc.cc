@@ -99,29 +99,6 @@ extern int monitorResolution;
 #define VFB_DEFAULT_LINEBIAS 0
 #define XWD_WINDOW_NAME_LEN 60
 
-typedef struct
-{
-  int scrnum;
-  int width;
-  int paddedWidth;
-  int paddedWidthInBytes;
-  int height;
-  int depth;
-  int bitsPerPixel;
-  int sizeInBytes;
-  int ncolors;
-  char *pfbMemory;
-  XWDColor *pXWDCmap;
-  XWDFileHeader *pXWDHeader;
-  Pixel blackPixel;
-  Pixel whitePixel;
-  unsigned int lineBias;
-  Bool pixelFormatDefined;
-  Bool rgbNotBgr;
-  int redBits, greenBits, blueBits;
-
-} vfbScreenInfo, *vfbScreenInfoPtr;
-
 static int vfbNumScreens;
 static vfbScreenInfo vfbScreens[MAXSCREENS];
 static Bool vfbPixmapDepths[33];
@@ -141,6 +118,11 @@ static char displayNumStr[16];
     else _dst = _src;
 
 
+vfbScreenInfo *vfbFirstScreen()
+{
+  return &vfbScreens[0];
+}
+
 static void vfbInitializePixmapDepths()
 {
   int i;
@@ -157,7 +139,9 @@ static void vfbInitializeDefaultScreens()
   {
     vfbScreens[i].scrnum = i;
     vfbScreens[i].width  = VFB_DEFAULT_WIDTH;
+    vfbScreens[i].maxWidth  = VFB_DEFAULT_WIDTH;
     vfbScreens[i].height = VFB_DEFAULT_HEIGHT;
+    vfbScreens[i].maxHeight = VFB_DEFAULT_HEIGHT;
     vfbScreens[i].depth  = VFB_DEFAULT_DEPTH;
     vfbScreens[i].blackPixel = VFB_DEFAULT_BLACKPIXEL;
     vfbScreens[i].whitePixel = VFB_DEFAULT_WHITEPIXEL;
@@ -290,6 +274,9 @@ int ddxProcessArgument(int argc, char *argv[], int i)
       UseMsg();
     }
 
+    vfbScreens[screenNum].maxWidth = vfbScreens[screenNum].width;
+    vfbScreens[screenNum].maxHeight= vfbScreens[screenNum].height;
+
     if (screenNum >= vfbNumScreens)
       vfbNumScreens = screenNum + 1;
     lastScreen = screenNum;
@@ -382,6 +369,8 @@ int ddxProcessArgument(int argc, char *argv[], int i)
       ErrorF("Invalid geometry %s\n", argv[i]);
       UseMsg();
     }
+    vfbScreens[0].maxWidth = vfbScreens[0].width;
+    vfbScreens[0].maxHeight= vfbScreens[0].height;
     return 2;
   }
 

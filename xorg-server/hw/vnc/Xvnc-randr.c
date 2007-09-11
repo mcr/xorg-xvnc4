@@ -19,6 +19,7 @@
 #include <X11/Xutil.h>
 #include <X11/extensions/Xrandr.h>
 #include <X11/cursorfont.h>
+#include <X11/XWDFile.h>
 
 #include "xorg-config.h"
 #include "inputstr.h"
@@ -41,24 +42,98 @@
 
 #define DEFAULT_REFRESH_RATE 50
 
+struct sizes {
+	unsigned int x,y;
+};
+
+struct sizes stock_sizes[]={
+	{ .x =  640, .y =  480 },
+	{ .x =  720, .y =  400 },
+	{ .x =  800, .y =  600 },
+	{ .x =  832, .y =  624 },
+	{ .x = 1024, .y =  768 },
+	{ .x=  1152, .y =  768 },
+	{ .x=  1152, .y =  864 },
+	{ .x = 1152, .y =  900 },
+	{ .x = 1280, .y =  768 },
+	{ .x = 1280, .y =  800 },
+	{ .x = 1280, .y =  960 },
+	{ .x = 1280, .y = 1024 },
+	{ .x = 1280, .y = 1024 },
+	{ .x = 1400, .y = 1050 }, 
+};
+
+
+static void vncRandRGetOneInfo(ScreenPtr pScreen,
+			       Bool selected,
+			       unsigned int x,   unsigned int y,
+			       unsigned int mmx, unsigned int mmy)
+{
+	RRScreenSizePtr pSize;
+
+	/* start by creating one for the actual size */
+	pSize = RRRegisterSize (pScreen,
+				x,y, mmx, mmy);
+
+	RRRegisterRate (pScreen, pSize, DEFAULT_REFRESH_RATE);
+
+	if(selected) {
+		/* tells it which one is current! */
+		RRSetCurrentConfig (pScreen, RR_Rotate_0,
+				    DEFAULT_REFRESH_RATE, pSize);
+	}
+}
+			  
 static Bool
 vncRandRGetInfo (ScreenPtr pScreen,
 		 Rotation  *rotations)
 {
-    RRScreenSizePtr pSize;
+	int i, randrCount, totalpixels;
+	struct sizes *s;
+	vfbScreenInfo *vfb0;
 
-    *rotations = RR_Rotate_0;
+	*rotations = RR_Rotate_0;
+	vfb0 = vfbFirstScreen();
+	randrCount = 0;
+	totalpixels = vfb0->maxHeight * vfb0->maxWidth;
 
-    pSize = RRRegisterSize (pScreen,
-			    pScreen->width,
-			    pScreen->height,
-			    pScreen->mmWidth,
-			    pScreen->mmHeight);
-    
-    RRRegisterRate (pScreen, pSize, DEFAULT_REFRESH_RATE);
-    RRSetCurrentConfig (pScreen, RR_Rotate_0, DEFAULT_REFRESH_RATE, pSize);
+	vncRandRGetOneInfo(pScreen, vfb0->randrSelected == randrCount,
+			   vfb0->maxWidth, vfb0->maxHeight,
+			   pScreen->mmWidth, pScreen->mmHeight);
 
-    return TRUE;
+	for(i = (sizeof(stock_sizes)/sizeof(struct sizes))-1;
+	    i>=0;
+	    i--) {
+		int nx, ny;
+		int reduced;
+
+		s = &stock_sizes[i];
+		nx = s->x;
+		ny = s->y;
+
+		if((nx * ny) > totalpixels) continue;
+
+		/* create screens which are 8 and 16 pixels smaller */
+		reduced = 16; 
+		do {
+			nx = s->x - reduced;
+			ny = s->y - reduced;
+
+			reduced -= 8;
+			if(nx == vfb0->maxWidth
+			   && ny == vfb0->maxHeight) continue;
+
+			randrCount++;
+			vncRandRGetOneInfo(pScreen,
+					   vfb0->randrSelected == randrCount,
+					   nx, ny,
+					   pScreen->mmWidth,
+					   pScreen->mmHeight);
+
+		} while(reduced >= 0);
+	}
+
+	return TRUE;
 }
 
 static Bool
@@ -67,8 +142,25 @@ vncRandRSetConfig (ScreenPtr	    pScreen,
 		    int		    rate,
 		    RRScreenSizePtr pSize)
 {
-	printf("trying to set size=%u x %u\n", pSize->width, pSize->height);
-	return FALSE;
+	vfbScreenInfo *vfb0;
+	int h,w;
+
+	vfb0 = vfbFirstScreen();
+
+	h= pSize->height;
+	w= pSize->width;
+	if( h > vfb0->maxHeight) h = vfb0->maxHeight;
+	if( w > vfb0->maxWidth)  w = vfb0->maxWidth;
+
+	vfb0->height = h;
+	vfb0->width  = w;
+	vfb0->randrSelected = pSize->id;
+
+	pScreen->width =w;
+	pScreen->height=h;
+
+	fprintf(stderr, "resized to %ux%u\n", w,h);
+	return TRUE;
 }
 
 Bool vncRandRInit (ScreenPtr pScreen)
