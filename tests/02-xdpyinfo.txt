@@ -1,0 +1,71 @@
+name of display:    :30.0
+version number:    11.0
+vendor string:    The X.Org Foundation
+vendor release number:    70200000
+X.Org version: 7.2.0
+maximum request size:  16777212 bytes
+motion buffer size:  256
+bitmap unit, bit order, padding:    32, LSBFirst, 32
+image byte order:    LSBFirst
+number of supported pixmap formats:    2
+supported pixmap formats:
+    depth 1, bits_per_pixel 1, scanline_pad 32
+    depth 16, bits_per_pixel 16, scanline_pad 32
+keycode range:    minimum 8, maximum 255
+focus:  PointerRoot
+number of extensions:    23
+    BIG-REQUESTS
+    DAMAGE
+    DEC-XTRAP
+    DOUBLE-BUFFER
+    Extended-Visual-Information
+    MIT-SCREEN-SAVER
+    MIT-SHM
+    MIT-SUNDRY-NONSTANDARD
+    RANDR
+    RECORD
+    SECURITY
+    SHAPE
+    SYNC
+    TOG-CUP
+    VNC-EXTENSION
+    X-Resource
+    XAccessControlExtension
+    XC-APPGROUP
+    XC-MISC
+    XFIXES
+    XFree86-Bigfont
+    XTEST
+    XVideo
+default screen number:    0
+number of screens:    1
+
+screen #0:
+  dimensions:    824x616 pixels (260x195 millimeters)
+  resolution:    80x80 dots per inch
+  depths (2):    1, 16
+  root window id:    0x26
+  depth of root window:    16 planes
+  number of colormaps:    minimum 1, maximum 1
+  default colormap:    0x21
+  default number of colormap cells:    64
+  preallocated pixels:    black 0, white 65535
+  options:    backing-store YES, save-unders YES
+  largest cursor:    824x616
+  current input event mask:    0x0
+  number of visuals:    2
+  default visual id:  0x22
+  visual:
+    visual id:    0x22
+    class:    TrueColor
+    depth:    16 planes
+    available colormap entries:    64 per subfield
+    red, green, blue masks:    0xf800, 0x7e0, 0x1f
+    significant bits in color specification:    8 bits
+  visual:
+    visual id:    0x23
+    class:    DirectColor
+    depth:    16 planes
+    available colormap entries:    64 per subfield
+    red, green, blue masks:    0x3f, 0x7c0, 0xf800
+    significant bits in color specification:    8 bits
