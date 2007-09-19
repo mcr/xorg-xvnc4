@@ -11,7 +11,6 @@ endif
 
 if CFB
 CFB_DIR=cfb
-CFB16_DIR=cfb16
 CFB32_DIR=cfb32
 endif
 
@@ -52,7 +51,6 @@ SUBDIRS = \
 	$(MFB_DIR) \
 	$(AFB_DIR) \
 	$(CFB_DIR) \
-	$(CFB16_DIR) \
 	$(CFB32_DIR) \
 	record \
 	xfixes \
