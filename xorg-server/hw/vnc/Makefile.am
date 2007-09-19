@@ -34,9 +34,6 @@ Xvnc_LDADD =	$(XORG_CORE_LIBS) \
 		$(XORG_LIBS) \
 		$(XSERVER_LIBS) \
 		../../fb/libfb.la \
-		../../cfb/libcfb.la \
-		../../cfb16/libcfb16.la \
-		../../cfb32/libcfb32.la \
 		../../mi/libminimi.la \
 		../../render/librender.la \
 		../../xkb/libxkbstubs.la \

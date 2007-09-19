@@ -188,6 +188,9 @@ XserverDesktop::XserverDesktop(ScreenPtr pScreen_,
 
   strideX_ = pScreen->width;
   setXandY(pScreen->width, pScreen->height);
+  fprintf(stderr, "Starting with X=%u Y=%u and strideX=%u\n",
+	  pScreen->width, pScreen->height, strideX_);
+
   if (fbptr)
     data = (rdr::U8*)fbptr;
   else

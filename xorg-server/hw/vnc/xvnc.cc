@@ -46,8 +46,7 @@ extern "C" {
 #include "X11/Xos.h"
 #include "scrnintstr.h"
 #include "servermd.h"
-#define PSZ 8
-#include "cfb.h"
+#include "fb.h"
 #include "mi.h"
 #include "mibstore.h"
 #include "colormapst.h"
@@ -70,16 +69,6 @@ extern "C" {
   extern char buildtime[];
 #undef class
 #undef public
-  extern Bool cfb16ScreenInit(ScreenPtr, pointer, int, int, int, int, int);
-  extern Bool cfb32ScreenInit(ScreenPtr, pointer, int, int, int, int, int);
-  extern Bool cfb16CreateGC(GCPtr);
-  extern Bool cfb32CreateGC(GCPtr);
-  extern void cfb16GetSpans(DrawablePtr, int, DDXPointPtr, int*, int, char*);
-  extern void cfb32GetSpans(DrawablePtr, int, DDXPointPtr, int*, int, char*);
-  extern void cfb16GetImage(DrawablePtr, int, int, int, int, unsigned int,
-                            unsigned long, char*);
-  extern void cfb32GetImage(DrawablePtr, int, int, int, int, unsigned int,
-                            unsigned long, char*);
 
 }
 
@@ -470,18 +459,14 @@ CARD32 GetTimeInMillis()
 #endif
 
 
+#if 0
 static Bool vfbMultiDepthCreateGC(GCPtr   pGC)
 {
-  switch (vfbBitsPerPixel(pGC->depth))
-  {
-  case 1:  return mfbCreateGC (pGC);
-  case 8:  return cfbCreateGC (pGC);
-  case 16: return cfb16CreateGC (pGC);
-  case 32: return cfb32CreateGC (pGC);
-  default: return FALSE;
-  }
+  return fbCreateGC (pGC, vfbBitsPerPixel(pGC->depth));
 }
+#endif
 
+#if 0
 static void vfbMultiDepthGetSpans(
                                   DrawablePtr		pDrawable,	/* drawable from which to get bits */
                                   int			wMax,		/* largest value of all *pwidths */
@@ -490,44 +475,20 @@ static void vfbMultiDepthGetSpans(
                                   int			nspans,		/* number of scanlines to copy */
                                   char		*pdstStart)	/* where to put the bits */
 {
-  switch (pDrawable->bitsPerPixel) {
-  case 1:
-    mfbGetSpans(pDrawable, wMax, ppt, pwidth, nspans, pdstStart);
-    break;
-  case 8:
-    cfbGetSpans(pDrawable, wMax, ppt, pwidth, nspans, pdstStart);
-    break;
-  case 16:
-    cfb16GetSpans(pDrawable, wMax, ppt, pwidth, nspans, pdstStart);
-    break;
-  case 32:
-    cfb32GetSpans(pDrawable, wMax, ppt, pwidth, nspans, pdstStart);
-    break;
-  }
+  fbGetSpans(pDrawable, wMax, ppt, pwidth, nspans, pdstStart, pDrawable->bitsPerPixel);
   return;
 }
+#endif
 
+#if 0
 static void
 vfbMultiDepthGetImage(DrawablePtr pDrawable, int sx, int sy, int w, int h,
                       unsigned int format, unsigned long planeMask,
                       char *pdstLine)
 {
-  switch (pDrawable->bitsPerPixel)
-  {
-  case 1:
-    mfbGetImage(pDrawable, sx, sy, w, h, format, planeMask, pdstLine);
-    break;
-  case 8:
-    cfbGetImage(pDrawable, sx, sy, w, h, format, planeMask, pdstLine);
-    break;
-  case 16:
-    cfb16GetImage(pDrawable, sx, sy, w, h, format, planeMask, pdstLine);
-    break;
-  case 32:
-    cfb32GetImage(pDrawable, sx, sy, w, h, format, planeMask, pdstLine);
-    break;
-  }
+  fbGetImage(pDrawable, sx, sy, w, h, format, planeMask, pdstLine, pDrawable->bitsPerPixel);
 }
+#endif
 
 static ColormapPtr InstalledMaps[MAXSCREENS];
 
@@ -798,33 +759,15 @@ static Bool vfbScreenInit(int index, ScreenPtr pScreen, int argc, char** argv)
   defaultColorVisualClass
     = (pvfb->bitsPerPixel > 8) ? TrueColor : PseudoColor;
 
-  switch (pvfb->bitsPerPixel)
-  {
-  case 1:
-    ret = mfbScreenInit(pScreen, pbits, pvfb->width, pvfb->height,
-                        dpi, dpi, pvfb->paddedWidth);
-    break;
-  case 8:
-    ret = cfbScreenInit(pScreen, pbits, pvfb->width, pvfb->height,
-                        dpi, dpi, pvfb->paddedWidth);
-    break;
-  case 16:
-    ret = cfb16ScreenInit(pScreen, pbits, pvfb->width, pvfb->height,
-                          dpi, dpi, pvfb->paddedWidth);
-    break;
-  case 32:
-    ret = cfb32ScreenInit(pScreen, pbits, pvfb->width, pvfb->height,
-                          dpi, dpi, pvfb->paddedWidth);
-    break;
-  default:
-    return FALSE;
-  }
-
+  ret = fbScreenInit(pScreen, pbits, pvfb->width, pvfb->height,
+		     dpi, dpi, pvfb->paddedWidth, pvfb->bitsPerPixel);
   if (!ret) return FALSE;
 
+#if 0
   pScreen->CreateGC = vfbMultiDepthCreateGC;
   pScreen->GetImage = vfbMultiDepthGetImage;
   pScreen->GetSpans = vfbMultiDepthGetSpans;
+#endif
 
   pScreen->InstallColormap = vfbInstallColormap;
   pScreen->UninstallColormap = vfbUninstallColormap;
@@ -870,14 +813,7 @@ static Bool vfbScreenInit(int index, ScreenPtr pScreen, int argc, char** argv)
     }
   }
 
-  if (pvfb->bitsPerPixel == 1)
-  {
-    ret = mfbCreateDefColormap(pScreen);
-  }
-  else
-  {
-    ret = cfbCreateDefColormap(pScreen);
-  }
+  ret = fbCreateDefColormap(pScreen);
 
   miSetZeroLineBias(pScreen, pvfb->lineBias);
 

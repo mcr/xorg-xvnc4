@@ -81,10 +81,10 @@ SHELL = /bin/sh
 top_srcdir = ..
 
 CC = gcc
-CFLAGS = -O2 -Wall $(DIR_CFLAGS)
+CFLAGS = -g -O2 -Wall $(DIR_CFLAGS)
 CCLD = $(CC)
 CXX = c++
-CXXFLAGS = -O2 -Wall
+CXXFLAGS = -g -O2 -Wall
 CXXLD = $(CXX)
 CPPFLAGS = 
 DEFS =  

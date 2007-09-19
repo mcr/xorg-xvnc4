@@ -69,11 +69,17 @@ void ComparingUpdateTracker::compare()
   }
 }
 
-void ComparingUpdateTracker::compareRect(const Rect& r, Region* newChanged)
+void ComparingUpdateTracker::compareRect(const Rect& r1, Region* newChanged)
 {
-  if (!r.enclosed_by(fb->getRect())) {
-    fprintf(stderr,"ComparingUpdateTracker: rect outside fb (%d,%d-%d,%d)\n", r.tl.x, r.tl.y, r.br.x, r.br.y);
-    return;
+  Rect r = r1;
+  Rect fbr = fb->getRect();
+
+  if (!r.enclosed_by(fbr)) {
+    if(r.tl.x < fbr.tl.x) r.tl.x = fbr.tl.x;
+    if(r.tl.y < fbr.tl.y) r.tl.y = fbr.tl.y;
+
+    if(r.br.x > fbr.br.x) r.br.x = fbr.br.x;
+    if(r.br.y > fbr.br.y) r.br.y = fbr.br.y;
   }
 
   int bytesPerPixel = fb->getPF().bpp/8;

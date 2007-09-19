@@ -118,7 +118,7 @@ void FullFramePixelBuffer::fillRect(const Rect& r, Pixel pix) {
         while (optr < eol)
           *optr++ = pix;
       }
-      break;
+    break;
     case 4:
       {
         U32* optr = (U32*)data;

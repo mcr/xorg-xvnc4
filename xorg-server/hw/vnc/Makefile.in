@@ -83,8 +83,7 @@ am_Xvnc_OBJECTS = Xvnc-xvnc.$(OBJEXT) Xvnc-dpmsstubs.$(OBJEXT) \
 Xvnc_OBJECTS = $(am_Xvnc_OBJECTS)
 am__DEPENDENCIES_1 =
 Xvnc_DEPENDENCIES = $(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1) \
-	$(am__DEPENDENCIES_1) ../../fb/libfb.la ../../cfb/libcfb.la \
-	../../cfb16/libcfb16.la ../../cfb32/libcfb32.la \
+	$(am__DEPENDENCIES_1) ../../fb/libfb.la \
 	../../mi/libminimi.la ../../render/librender.la \
 	../../xkb/libxkbstubs.la ../../dbe/libdbe.la \
 	../../Xext/libXext.la ../../XTrap/libxtrap.la \
@@ -612,9 +611,6 @@ Xvnc_LDADD = $(XORG_CORE_LIBS) \
 		$(XORG_LIBS) \
 		$(XSERVER_LIBS) \
 		../../fb/libfb.la \
-		../../cfb/libcfb.la \
-		../../cfb16/libcfb16.la \
-		../../cfb32/libcfb32.la \
 		../../mi/libminimi.la \
 		../../render/librender.la \
 		../../xkb/libxkbstubs.la \
