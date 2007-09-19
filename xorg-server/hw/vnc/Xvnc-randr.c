@@ -123,7 +123,7 @@ vncRandRGetInfo (ScreenPtr pScreen,
 		if((nx * ny) > totalpixels) continue;
 
 		/* create screens which are smaller by a bit */
-		for(reduced=0; reduced < STOCK_SIZE_COUNT; reduced++) {
+		for(reduced=STOCK_SIZE_COUNT-1; reduced >= 0; reduced--) {
 			nx = s->x - stock_size_reduce_X[reduced];
 			ny = s->y - stock_size_reduce_Y[reduced];
 
