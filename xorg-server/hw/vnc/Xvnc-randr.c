@@ -79,6 +79,9 @@ static void vncRandRGetOneInfo(ScreenPtr pScreen,
 			       unsigned int mmx, unsigned int mmy)
 {
 	RRScreenSizePtr pSize;
+	vfbScreenInfo *vfb0;
+
+	vfb0 = vfbFirstScreen();
 
 	/* start by creating one for the actual size */
 	pSize = RRRegisterSize (pScreen,
@@ -88,6 +91,8 @@ static void vncRandRGetOneInfo(ScreenPtr pScreen,
 
 	if(selected) {
 		/* tells it which one is current! */
+		fprintf(stderr, "selected pSize=%u (%u)\n",
+			pSize->id, vfb0->randrSelected);	
 		RRSetCurrentConfig (pScreen, RR_Rotate_0,
 				    DEFAULT_REFRESH_RATE, pSize);
 	}
@@ -168,7 +173,7 @@ vncRandRSetConfig (ScreenPtr	    pScreen,
 
 	vncResizeServer(0);
 
-	fprintf(stderr, "resized to %ux%u\n", w,h);
+	fprintf(stderr, "resized to %ux%u for pSize=%u\n", w,h, pSize->id);
 	return TRUE;
 }
 
