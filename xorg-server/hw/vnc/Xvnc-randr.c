@@ -46,6 +46,15 @@ struct sizes {
 	unsigned int x,y;
 };
 
+/*
+ * NOTES:
+ *   - a 1024x768 websnap is 1004 x 744 desktop, so 20 x 24 smaller.
+ *
+ */
+int stock_size_reduce_X[]= {20, 16, 8, 0};
+int stock_size_reduce_Y[]= {24, 16, 8, 0};
+#define STOCK_SIZE_COUNT (sizeof(stock_size_reduce_X)/sizeof(int))
+
 struct sizes stock_sizes[]={
 	{ .x =  640, .y =  480 },
 	{ .x =  720, .y =  400 },
@@ -113,13 +122,11 @@ vncRandRGetInfo (ScreenPtr pScreen,
 
 		if((nx * ny) > totalpixels) continue;
 
-		/* create screens which are 8 and 16 pixels smaller */
-		reduced = 16; 
-		do {
-			nx = s->x - reduced;
-			ny = s->y - reduced;
+		/* create screens which are smaller by a bit */
+		for(reduced=0; reduced < STOCK_SIZE_COUNT; reduced++) {
+			nx = s->x - stock_size_reduce_X[reduced];
+			ny = s->y - stock_size_reduce_Y[reduced];
 
-			reduced -= 8;
 			if(nx == vfb0->maxWidth
 			   && ny == vfb0->maxHeight) continue;
 
@@ -130,7 +137,7 @@ vncRandRGetInfo (ScreenPtr pScreen,
 					   pScreen->mmWidth,
 					   pScreen->mmHeight);
 
-		} while(reduced >= 0);
+		} 
 	}
 
 	return TRUE;
