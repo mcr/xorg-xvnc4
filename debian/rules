@@ -86,9 +86,6 @@ clean:
 #	cp -f /usr/share/misc/config.guess config.guess
 #endif
 
-	rm -f xorg-server unix/xorg-server-1.* xorg-server_*
-	rm -rf xorg-server-1.*
-
 	dh_clean 
 
 install: install-indep install-arch

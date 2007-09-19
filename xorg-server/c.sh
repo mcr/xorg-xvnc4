@@ -1,7 +1,8 @@
 #!/bin/sh
 
 ./configure \
-                --enable-xorg \
+                --disable-xvfb \
+                --disable-xnest \
                 --disable-dependency-tracking \
                 --disable-xprint \
                 --disable-static \
@@ -14,7 +15,8 @@
                 --disable-dmx \
                 --disable-lbx \
                 --enable-xdmcp \
-                --disable-xevie \
+                --enable-randr \
+                --enable-xevie \
                 --disable-dri \
                 --with-int10=stub \
                 --prefix=/usr --mandir=/usr/share/man \

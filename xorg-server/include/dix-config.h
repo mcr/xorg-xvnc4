@@ -325,7 +325,7 @@
 #define XDMCP 1
 
 /* Build XEvIE extension */
-/* #undef XEVIE */
+#define XEVIE 1
 
 /* Build XFree86 BigFont extension */
 #define XF86BIGFONT 1
