@@ -102,7 +102,6 @@ SOFTWARE.
 
 #include "mi.h"
 #include "mispans.h"
-#include "compiler.h"
 
 /* scanline filling for color frame buffer
    written by drewry, oct 1986 modified by smarks

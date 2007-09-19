@@ -17,7 +17,7 @@
 #define XORGSERVER 1
 
 /* Current X.Org version. */
-#define XORG_VERSION_CURRENT (((7) * 10000000) + ((2) * 100000) + ((0) * 1000) + 0)
+#define XORG_VERSION_CURRENT (((1) * 10000000) + ((4) * 100000) + ((0) * 1000) + 0)
 
 /* Need XFree86 libc-replacement typedefs. */
 #define NEED_XF86_TYPES 1
@@ -44,16 +44,16 @@
 #define __XCONFIGFILE__ "xorg.conf"
 
 /* Path to loadable modules. */
-#define DEFAULT_MODULE_PATH "/usr/lib/xorg/modules"
+#define DEFAULT_MODULE_PATH "/usr/local/lib/xorg/modules"
 
 /* Path to installed libraries. */
-#define DEFAULT_LIBRARY_PATH "/usr/lib"
+#define DEFAULT_LIBRARY_PATH "/usr/local/lib"
 
 /* Path to server log file. */
 #define DEFAULT_LOGPREFIX "/var/log/Xorg."
 
 /* Building DRI-capable DDX. */
-/* #undef XF86DRI */
+#define XF86DRI 1
 
 /* Solaris 8 or later? */
 /* #undef __SOL8__ */
@@ -84,22 +84,22 @@
 /* #undef USE_AMD64_IOPL */
 
 /* BSD /dev/io */
-/* #undef USE_DEV_IO */
+#define USE_DEV_IO 1
 
 /* BSD i386 iopl */
 /* #undef USE_I386_IOPL */
 
 /* System is BSD-like */
-/* #undef CSRG_BASED */
+#define CSRG_BASED 1
 
 /* System has PC console */
-/* #undef PCCONS_SUPPORT */
+#define PCCONS_SUPPORT 1
 
 /* System has PCVT console */
-/* #undef PCVT_SUPPORT */
+#define PCVT_SUPPORT 1
 
 /* System has syscons console */
-/* #undef SYSCONS_SUPPORT */
+#define SYSCONS_SUPPORT 1
 
 /* System has wscons console */
 /* #undef WSCONS_SUPPORT */
@@ -108,12 +108,12 @@
 /* #undef HAS_APERTURE_DRV */
 
 /* Has backtrace support */
-#define HAVE_BACKTRACE 1
+/* #undef HAVE_BACKTRACE */
 
 /* Name of the period field in struct kbd_repeat */
-#define LNX_KBD_PERIOD_NAME period
+/* #undef LNX_KBD_PERIOD_NAME */
 
 /* Have execinfo.h */
-#define HAVE_EXECINFO_H 1
+/* #undef HAVE_EXECINFO_H */
 
 #endif /* _XORG_CONFIG_H_ */

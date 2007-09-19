@@ -283,9 +283,6 @@ extern void BigReqExtensionInit(INITARGS);
 #ifdef MITMISC
 extern void MITMiscExtensionInit(INITARGS);
 #endif
-#ifdef VNCEXT
-extern void vncExtensionInit(INITARGS);
-#endif
 #ifdef XIDLE
 extern void XIdleExtensionInit(INITARGS);
 #endif
@@ -341,16 +338,18 @@ extern void XFree86DGAExtensionInit(INITARGS);
 #endif
 #ifdef GLXEXT
 typedef struct __GLXprovider __GLXprovider;
-extern __GLXprovider __glXMesaProvider;
-extern void GlxPushProvider(__GLXprovider *impl);
-#ifndef __DARWIN__
-extern void GlxExtensionInit(INITARGS);
-extern void GlxWrapInitVisuals(miInitVisualsProcPtr *);
-#else
+#ifdef INXDARWINAPP
+extern __GLXprovider* __DarwinglXMesaProvider;
+extern void DarwinGlxPushProvider(__GLXprovider *impl);
 extern void DarwinGlxExtensionInit(INITARGS);
 extern void DarwinGlxWrapInitVisuals(miInitVisualsProcPtr *);
-#endif
-#endif
+#else
+extern __GLXprovider __glXMesaProvider;
+extern void GlxPushProvider(__GLXprovider *impl);
+extern void GlxExtensionInit(INITARGS);
+extern void GlxWrapInitVisuals(miInitVisualsProcPtr *);
+#endif // INXDARWINAPP
+#endif // GLXEXT
 #ifdef XF86DRI
 extern void XFree86DRIExtensionInit(INITARGS);
 #endif
@@ -552,7 +551,7 @@ InitExtensions(argc, argv)
 #ifdef MULTIBUFFER
     if (!noMultibufferExtension) MultibufferExtensionInit();
 #endif
-#if defined(XINPUT) && !defined(NO_HW_ONLY_EXTS)
+#if defined(XINPUT)
     if (!noXInputExtension) XInputExtensionInit();
 #endif
 #ifdef XTEST
@@ -563,9 +562,6 @@ InitExtensions(argc, argv)
 #endif
 #ifdef MITMISC
     if (!noMITMiscExtension) MITMiscExtensionInit();
-#endif
-#ifdef VNCEXT
-    vncExtensionInit();
 #endif
 #ifdef XIDLE
     if (!noXIdleExtension) XIdleExtensionInit();
@@ -585,7 +581,7 @@ InitExtensions(argc, argv)
 #ifdef XSYNC
     if (!noSyncExtension) SyncExtensionInit();
 #endif
-#if defined(XKB) && !defined(PRINT_ONLY_SERVER) && !defined(NO_HW_ONLY_EXTS)
+#if defined(XKB) && !defined(PRINT_ONLY_SERVER)
     if (!noXkbExtension) XkbExtensionInit();
 #endif
 #ifdef XCMISC
@@ -635,15 +631,16 @@ InitExtensions(argc, argv)
     if (!noXFree86DRIExtension) XFree86DRIExtensionInit();
 #endif
 #endif
-#ifdef GLXEXT
 
-    GlxPushProvider(&__glXMesaProvider);
-#ifndef __DARWIN__
-    if (!noGlxExtension) GlxExtensionInit();
-#else
+#ifdef GLXEXT
+#ifdef INXDARWINAPP
+    DarwinGlxPushProvider(__DarwinglXMesaProvider);
     if (!noGlxExtension) DarwinGlxExtensionInit();
-#endif
-#endif
+#else
+    GlxPushProvider(&__glXMesaProvider);
+    if (!noGlxExtension) GlxExtensionInit();
+#endif // INXDARWINAPP
+#endif // GLXEXT
 #ifdef XFIXES
     /* must be before Render to layer DisplayCursor correctly */
     if (!noXFixesExtension) XFixesExtensionInit();

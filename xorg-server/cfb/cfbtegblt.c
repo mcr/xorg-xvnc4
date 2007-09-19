@@ -64,7 +64,6 @@ SOFTWARE.
 #include	"mi.h"
 #define MFB_CONSTS_ONLY
 #include	"maskbits.h"
-#include	"compiler.h"
 
 /*
     this works for fonts with glyphs <= 32 bits wide, on an
