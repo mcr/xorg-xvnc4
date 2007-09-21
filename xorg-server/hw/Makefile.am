@@ -42,6 +42,8 @@ if BUILD_DARWIN
 DARWIN_SUBDIRS = darwin
 endif
 
+XVNC_SUBDIRS = vnc
+
 SUBDIRS =			\
 	$(XORG_SUBDIRS)		\
 	$(XGL_SUBDIRS)		\
@@ -49,6 +51,7 @@ SUBDIRS =			\
 	$(DARWIN_SUBDIRS)	\
 	$(XVFB_SUBDIRS)		\
 	$(XNEST_SUBDIRS)	\
+        $(XVNC_SUBDIRS)         \
 	$(DMX_SUBDIRS)          \
         $(KDRIVE_SUBDIRS)	\
 	$(XPRINT_SUBDIRS)

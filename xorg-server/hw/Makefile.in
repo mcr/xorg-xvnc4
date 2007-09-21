@@ -359,6 +359,7 @@ xpconfigdir = @xpconfigdir@
 @KDRIVE_TRUE@KDRIVE_SUBDIRS = kdrive
 @XPRINT_TRUE@XPRINT_SUBDIRS = xprint
 @BUILD_DARWIN_TRUE@DARWIN_SUBDIRS = darwin
+XVNC_SUBDIRS = vnc
 SUBDIRS = \
 	$(XORG_SUBDIRS)		\
 	$(XGL_SUBDIRS)		\
@@ -366,6 +367,7 @@ SUBDIRS = \
 	$(DARWIN_SUBDIRS)	\
 	$(XVFB_SUBDIRS)		\
 	$(XNEST_SUBDIRS)	\
+        $(XVNC_SUBDIRS)         \
 	$(DMX_SUBDIRS)          \
         $(KDRIVE_SUBDIRS)	\
 	$(XPRINT_SUBDIRS)

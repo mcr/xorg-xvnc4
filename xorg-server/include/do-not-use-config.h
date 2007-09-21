@@ -2,16 +2,16 @@
 /* include/do-not-use-config.h.in.  Generated from configure.ac by autoheader.  */
 
 /* Build AIGLX loader */
-#define AIGLX 1
+/* #undef AIGLX */
 
 /* Default base font path */
-#define BASE_FONT_PATH "/usr/local/lib/X11/fonts"
+#define BASE_FONT_PATH "/usr/share/fonts/X11"
 
 /* Support BigRequests extension */
 #define BIGREQS 1
 
 /* Define to 1 if `struct sockaddr_in' has a `sin_len' member */
-#define BSD44SOCKETS 1
+/* #undef BSD44SOCKETS */
 
 /* Builder address */
 #define BUILDERADDR "xorg@lists.freedesktop.org"
@@ -23,7 +23,7 @@
 /* #undef BUILTIN_FONTS */
 
 /* Default font path */
-#define COMPILEDDEFAULTFONTPATH "/usr/local/lib/X11/fonts/misc/,/usr/local/lib/X11/fonts/TTF/,/usr/local/lib/X11/fonts/OTF,/usr/local/lib/X11/fonts/Type1/,/usr/local/lib/X11/fonts/100dpi/,/usr/local/lib/X11/fonts/75dpi/"
+#define COMPILEDDEFAULTFONTPATH "/usr/share/fonts/X11/misc/,/usr/share/fonts/X11/TTF/,/usr/share/fonts/X11/OTF,/usr/share/fonts/X11/Type1/,/usr/share/fonts/X11/100dpi/,/usr/share/fonts/X11/75dpi/"
 
 /* Support Composite Extension */
 #define COMPOSITE 1
@@ -32,7 +32,7 @@
 /* #undef CONFIG_DBUS_API */
 
 /* Use the HAL hotplug API */
-#define CONFIG_HAL 1
+/* #undef CONFIG_HAL */
 
 /* Define to one of `_getb67', `GETB67', `getb67' for Cray-2 and Cray-YMP
    systems. This function is required for `alloca.c' support on those systems.
@@ -40,7 +40,7 @@
 /* #undef CRAY_STACKSEG_END */
 
 /* System is BSD-like */
-#define CSRG_BASED 1
+/* #undef CSRG_BASED */
 
 /* Simple debug messages */
 /* #undef CYGDEBUG */
@@ -82,13 +82,13 @@
 /* #undef DEBUG */
 
 /* Default library install path */
-#define DEFAULT_LIBRARY_PATH "/usr/local/lib"
+#define DEFAULT_LIBRARY_PATH "/usr/lib"
 
 /* Default log location */
 #define DEFAULT_LOGPREFIX "/var/log/Xorg."
 
 /* Default module search path */
-#define DEFAULT_MODULE_PATH "/usr/local/lib/xorg/modules"
+#define DEFAULT_MODULE_PATH "/usr/lib/xorg/modules"
 
 /* Support DGA extension */
 #define DGA 1
@@ -100,7 +100,7 @@
 #define DRIVERS {}
 
 /* Default DRI driver path */
-#define DRI_DRIVER_PATH "/usr/local/lib/dri"
+#define DRI_DRIVER_PATH "/usr/lib/dri"
 
 /* Build Extended-Visual-Information extension */
 #define EVI 1
@@ -109,7 +109,7 @@
 /* #undef FONTCACHE */
 
 /* Build GLX extension */
-#define GLXEXT 1
+/* #undef GLXEXT */
 
 /* Support XDM-AUTH*-1 */
 #define HASXDMAUTH 1
@@ -127,7 +127,7 @@
 #define HAS_GETIFADDRS 1
 
 /* Have the 'getpeereid' function. */
-#define HAS_GETPEEREID 1
+/* #undef HAS_GETPEEREID */
 
 /* Have the 'getpeerucred' function. */
 /* #undef HAS_GETPEERUCRED */
@@ -152,28 +152,28 @@
 
 /* Define to 1 if you have <alloca.h> and it should be used (not on Ultrix).
    */
-/* #undef HAVE_ALLOCA_H */
+#define HAVE_ALLOCA_H 1
 
 /* Define to 1 if you have the <asm/mtrr.h> header file. */
-/* #undef HAVE_ASM_MTRR_H */
+#define HAVE_ASM_MTRR_H 1
 
 /* Define to 1 if you have the `authdes_create' function. */
 #define HAVE_AUTHDES_CREATE 1
 
 /* Define to 1 if you have the `authdes_seccreate' function. */
-#define HAVE_AUTHDES_SECCREATE 1
+/* #undef HAVE_AUTHDES_SECCREATE */
 
 /* Has backtrace support */
-/* #undef HAVE_BACKTRACE */
+#define HAVE_BACKTRACE 1
 
 /* Define to 1 if you have the <byteswap.h> header file. */
-/* #undef HAVE_BYTESWAP_H */
+#define HAVE_BYTESWAP_H 1
 
 /* Have the 'cbrt' function */
 #define HAVE_CBRT 1
 
 /* Define to 1 if you have the `clock_gettime' function. */
-#define HAVE_CLOCK_GETTIME 1
+/* #undef HAVE_CLOCK_GETTIME */
 
 /* Define to 1 if you have the <dbm.h> header file. */
 /* #undef HAVE_DBM_H */
@@ -192,7 +192,7 @@
 /* #undef HAVE_DOPRNT */
 
 /* Have execinfo.h */
-/* #undef HAVE_EXECINFO_H */
+#define HAVE_EXECINFO_H 1
 
 /* Define to 1 if you have the <fcntl.h> header file. */
 #define HAVE_FCNTL_H 1
@@ -216,7 +216,7 @@
 #define HAVE_INTTYPES_H 1
 
 /* Has version 2.2 (or newer) of the drm library */
-#define HAVE_LIBDRM_2_2 1
+/* #undef HAVE_LIBDRM_2_2 */
 
 /* Define to 1 if you have the `m' library (-lm). */
 #define HAVE_LIBM 1
@@ -225,13 +225,13 @@
 #define HAVE_LINK 1
 
 /* Define to 1 if you have the <linux/agpgart.h> header file. */
-/* #undef HAVE_LINUX_AGPGART_H */
+#define HAVE_LINUX_AGPGART_H 1
 
 /* Define to 1 if you have the <linux/apm_bios.h> header file. */
-/* #undef HAVE_LINUX_APM_BIOS_H */
+#define HAVE_LINUX_APM_BIOS_H 1
 
 /* Define to 1 if you have the <linux/fb.h> header file. */
-/* #undef HAVE_LINUX_FB_H */
+#define HAVE_LINUX_FB_H 1
 
 /* Define to 1 if you have the <machine/mtrr.h> header file. */
 /* #undef HAVE_MACHINE_MTRR_H */
@@ -249,7 +249,7 @@
 #define HAVE_MKSTEMP 1
 
 /* Define to 1 if you have the <ndbm.h> header file. */
-#define HAVE_NDBM_H 1
+/* #undef HAVE_NDBM_H */
 
 /* Define to 1 if you have the <ndir.h> header file, and it defines `DIR'. */
 /* #undef HAVE_NDIR_H */
@@ -285,7 +285,7 @@
 #define HAVE_SYSV_IPC 1
 
 /* Define to 1 if you have the <sys/agpio.h> header file. */
-#define HAVE_SYS_AGPIO_H 1
+/* #undef HAVE_SYS_AGPIO_H */
 
 /* Define to 1 if you have the <sys/dir.h> header file, and it defines `DIR'.
    */
@@ -295,10 +295,10 @@
 /* #undef HAVE_SYS_IO_H */
 
 /* Define to 1 if you have the <sys/linker.h> header file. */
-#define HAVE_SYS_LINKER_H 1
+/* #undef HAVE_SYS_LINKER_H */
 
 /* Define to 1 if you have the <sys/memrange.h> header file. */
-#define HAVE_SYS_MEMRANGE_H 1
+/* #undef HAVE_SYS_MEMRANGE_H */
 
 /* Define to 1 if you have the <sys/ndir.h> header file, and it defines `DIR'.
    */
@@ -353,7 +353,7 @@
 #define MITSHM 1
 
 /* Have monotonic clock from clock_gettime() */
-/* #undef MONOTONIC_CLOCK */
+#define MONOTONIC_CLOCK 1
 
 /* Build Multibuffer extension */
 /* #undef MULTIBUFFER */
@@ -380,7 +380,7 @@
 /* #undef NULL_ROOT_CURSOR */
 
 /* Operating System Name */
-#define OSNAME "FreeBSD 7.0-CURRENT i386"
+#define OSNAME "Linux 2.6.18-xen i686"
 
 /* Operating System Vendor */
 #define OSVENDOR ""
@@ -395,37 +395,37 @@
 #define PACKAGE_NAME "xorg-server"
 
 /* Define to the full name and version of this package. */
-#define PACKAGE_STRING "xorg-server 1.4"
+#define PACKAGE_STRING "xorg-server 1.4.0"
 
 /* Define to the one symbol short name of this package. */
 #define PACKAGE_TARNAME "xorg-server"
 
 /* Define to the version of this package. */
-#define PACKAGE_VERSION "1.4"
+#define PACKAGE_VERSION "1.4.0"
 
 /* Major version of this package */
-#define PACKAGE_VERSION_MAJOR 1
+/* #undef PACKAGE_VERSION_MAJOR */
 
 /* Minor version of this package */
-#define PACKAGE_VERSION_MINOR 4
+/* #undef PACKAGE_VERSION_MINOR */
 
 /* Patch version of this package */
-#define PACKAGE_VERSION_PATCHLEVEL 0
+/* #undef PACKAGE_VERSION_PATCHLEVEL */
 
 /* Internal define for Xinerama */
 #define PANORAMIX 1
 
 /* System has PC console */
-#define PCCONS_SUPPORT 1
+/* #undef PCCONS_SUPPORT */
 
 /* System has PC console */
-#define PCVT_SUPPORT 1
+/* #undef PCVT_SUPPORT */
 
 /* Support pixmap privates */
 #define PIXPRIV 1
 
 /* Overall prefix */
-#define PROJECTROOT "/usr/local"
+#define PROJECTROOT "/usr"
 
 /* Support RANDR extension */
 #define RANDR 1
@@ -443,7 +443,7 @@
 /* #undef RETSIGTYPE */
 
 /* Default RGB path */
-#define RGB_DB "/usr/local/share/X11/rgb"
+#define RGB_DB "/etc/X11/rgb"
 
 /* Build Rootless code */
 /* #undef ROOTLESS */
@@ -455,7 +455,7 @@
 #define SECURE_RPC 1
 
 /* Server config path */
-#define SERVERCONFIGdir "/usr/local/lib/xserver"
+#define SERVERCONFIGdir "/usr/lib/xserver"
 
 /* Use a lock to prevent multiple servers on a display */
 #define SERVER_LOCK 1
@@ -484,7 +484,7 @@
 /* #undef SVR4 */
 
 /* System has syscons console */
-#define SYSCONS_SUPPORT 1
+/* #undef SYSCONS_SUPPORT */
 
 /* Support TCP socket connections */
 #define TCPCONN 1
@@ -505,7 +505,7 @@
 /* #undef USE_AMD64_IOPL */
 
 /* BSD /dev/io */
-#define USE_DEV_IO 1
+/* #undef USE_DEV_IO */
 
 /* BSD i386 iopl */
 /* #undef USE_I386_IOPL */
@@ -517,10 +517,10 @@
 #define USE_RGB_TXT 1
 
 /* Define to use byteswap macros from <sys/endian.h> */
-#define USE_SYS_ENDIAN_H 1
+/* #undef USE_SYS_ENDIAN_H */
 
 /* Version number of package */
-#define VERSION "1.4"
+#define VERSION "1.4.0"
 
 /* Building vgahw module */
 #define WITH_VGAHW 1
@@ -547,7 +547,7 @@
 #define XDMCP 1
 
 /* Path to XErrorDB file */
-#define XERRORDB_PATH "/usr/local/share/X11/XErrorDB"
+#define XERRORDB_PATH "/usr/share/X11/XErrorDB"
 
 /* Build XEvIE extension */
 #define XEVIE 1
@@ -559,7 +559,7 @@
 #define XF86CONFIGFILE "xorg.conf"
 
 /* Build DRI extension */
-#define XF86DRI 1
+/* #undef XF86DRI */
 
 /* Support XFree86 miscellaneous extensions */
 #define XF86MISC 1
@@ -595,10 +595,10 @@
 #define XKB 1
 
 /* Path to XKB data */
-#define XKB_BASE_DIRECTORY "/usr/local/share/X11/xkb"
+#define XKB_BASE_DIRECTORY "/usr/share/X11/xkb"
 
 /* Path to XKB bin dir */
-#define XKB_BIN_DIRECTORY "/usr/local/bin"
+#define XKB_BIN_DIRECTORY "/usr/bin"
 
 /* Disable XKB per default */
 #define XKB_DFLT_DISABLED 0
@@ -607,7 +607,7 @@
 #define XKB_IN_SERVER 1
 
 /* Path to XKB output dir */
-#define XKM_OUTPUT_DIR "/usr/local/share/X11/xkb/compiled/"
+#define XKM_OUTPUT_DIR "/var/lib/xkb/"
 
 /* Building Xorg server */
 #define XORGSERVER 1
@@ -616,13 +616,13 @@
 #define XORG_DATE "5 September 2007"
 
 /* Vendor man version */
-#define XORG_MAN_VERSION "Version 1.4"
+#define XORG_MAN_VERSION "Version 1.4.0"
 
 /* Building Xorg server */
 #define XORG_SERVER 1
 
 /* Current Xorg version */
-#define XORG_VERSION_CURRENT (((1) * 10000000) + ((4) * 100000) + ((0) * 1000) + 0)
+#define XORG_VERSION_CURRENT (((1) * 10000000) + ((0) * 100000) + ((0) * 1000) + 0)
 
 /* Build Print extension */
 /* #undef XPRINT */
@@ -684,10 +684,10 @@
 #define YYTEXT_POINTER 1
 
 /* Number of bits in a file offset, on hosts where this is settable. */
-/* #undef _FILE_OFFSET_BITS */
+#define _FILE_OFFSET_BITS 64
 
 /* Enable GNU and other extensions to the C environment for glibc */
-/* #undef _GNU_SOURCE */
+#define _GNU_SOURCE 1
 
 /* Define for large files, on AIX-style hosts. */
 /* #undef _LARGE_FILES */
@@ -714,13 +714,13 @@
 #define __XSERVERNAME__ "Xorg"
 
 /* Define to 16-bit byteswap macro */
-#define bswap_16 bswap16
+/* #undef bswap_16 */
 
 /* Define to 32-bit byteswap macro */
-#define bswap_32 bswap32
+/* #undef bswap_32 */
 
 /* Define to 64-bit byteswap macro */
-#define bswap_64 bswap64
+/* #undef bswap_64 */
 
 /* Define to empty if `const' does not conform to ANSI C. */
 /* #undef const */

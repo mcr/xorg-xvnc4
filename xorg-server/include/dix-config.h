@@ -11,7 +11,7 @@
 #define BUILDERADDR "xorg@lists.freedesktop.org"
 
 /* Operating System Name */
-#define OSNAME "FreeBSD 7.0-CURRENT i386"
+#define OSNAME "Linux 2.6.18-xen i686"
 
 /* Operating System Vendor */
 #define OSVENDOR ""
@@ -20,7 +20,7 @@
 #define BUILDERSTRING ""
 
 /* Default font path */
-#define COMPILEDDEFAULTFONTPATH "/usr/local/lib/X11/fonts/misc/,/usr/local/lib/X11/fonts/TTF/,/usr/local/lib/X11/fonts/OTF,/usr/local/lib/X11/fonts/Type1/,/usr/local/lib/X11/fonts/100dpi/,/usr/local/lib/X11/fonts/75dpi/"
+#define COMPILEDDEFAULTFONTPATH "/usr/share/fonts/X11/misc/,/usr/share/fonts/X11/TTF/,/usr/share/fonts/X11/OTF,/usr/share/fonts/X11/Type1/,/usr/share/fonts/X11/100dpi/,/usr/share/fonts/X11/75dpi/"
 
 /* Support Composite Extension */
 #define COMPOSITE 1
@@ -58,13 +58,13 @@
 #define DPMSExtension 1
 
 /* Build GLX extension */
-#define GLXEXT 1
+/* #undef GLXEXT */
 
 /* Build GLX DRI loader */
 /* #undef GLX_DRI */
 
 /* Path to DRI drivers */
-#define DRI_DRIVER_PATH "/usr/local/lib/dri"
+#define DRI_DRIVER_PATH "/usr/lib/dri"
 
 /* Include handhelds.org h3600 touchscreen driver */
 /* #undef H3600_TS */
@@ -79,7 +79,7 @@
 #define HAS_GETIFADDRS 1
 
 /* Define to 1 if you have the `getpeereid' function. */
-#define HAS_GETPEEREID 1
+/* #undef HAS_GETPEEREID */
 
 /* Define to 1 if you have the `getpeerucred' function. */
 /* #undef HAS_GETPEERUCRED */
@@ -95,13 +95,13 @@
 
 /* Define to 1 if you have <alloca.h> and it should be used (not on Ultrix).
    */
-/* #undef HAVE_ALLOCA_H */
+#define HAVE_ALLOCA_H 1
 
 /* Define to 1 if you have the <asm/mtrr.h> header file. */
-/* #undef HAVE_ASM_MTRR_H */
+#define HAVE_ASM_MTRR_H 1
 
 /* Define to 1 if you have the <byteswap.h> header file. */
-/* #undef HAVE_BYTESWAP_H */
+#define HAVE_BYTESWAP_H 1
 
 /* Define to 1 if you have cbrt */
 #define HAVE_CBRT 1
@@ -141,7 +141,7 @@
 #define HAVE_INTTYPES_H 1
 
 /* Define to 1 if you have version 2.2 (or newer) of the drm library */
-#define HAVE_LIBDRM_2_2 1
+/* #undef HAVE_LIBDRM_2_2 */
 
 /* Define to 1 if you have the `m' library (-lm). */
 #define HAVE_LIBM 1
@@ -150,13 +150,13 @@
 #define HAVE_LINK 1
 
 /* Define to 1 if you have the <linux/agpgart.h> header file. */
-/* #undef HAVE_LINUX_AGPGART_H */
+#define HAVE_LINUX_AGPGART_H 1
 
 /* Define to 1 if you have the <linux/apm_bios.h> header file. */
-/* #undef HAVE_LINUX_APM_BIOS_H */
+#define HAVE_LINUX_APM_BIOS_H 1
 
 /* Define to 1 if you have the <linux/fb.h> header file. */
-/* #undef HAVE_LINUX_FB_H */
+#define HAVE_LINUX_FB_H 1
 
 /* Define to 1 if you have the <linux/h3600_ts.h> header file. */
 /* #undef HAVE_LINUX_H3600_TS_H */
@@ -174,7 +174,7 @@
 #define HAVE_MKSTEMP 1
 
 /* Define to 1 if you have the <ndbm.h> header file. */
-#define HAVE_NDBM_H 1
+/* #undef HAVE_NDBM_H */
 
 /* Define to 1 if you have the <ndir.h> header file, and it defines `DIR'. */
 /* #undef HAVE_NDIR_H */
@@ -207,7 +207,7 @@
 #define HAVE_SYSV_IPC 1
 
 /* Define to 1 if you have the <sys/agpio.h> header file. */
-#define HAVE_SYS_AGPIO_H 1
+/* #undef HAVE_SYS_AGPIO_H */
 
 /* Define to 1 if you have the <sys/dir.h> header file, and it defines `DIR'.
    */
@@ -266,7 +266,7 @@
 #define PIXPRIV 1
 
 /* Overall prefix */
-#define PROJECTROOT "/usr/local"
+#define PROJECTROOT "/usr"
 
 /* Support RANDR extension */
 #define RANDR 1
@@ -325,7 +325,7 @@
 #define USE_RGB_TXT 1
 
 /* Define to use byteswap macros from <sys/endian.h> */
-#define USE_SYS_ENDIAN_H 1
+/* #undef USE_SYS_ENDIAN_H */
 
 /* unaligned word accesses behave as expected */
 /* #undef WORKING_UNALIGNED_INT */
@@ -379,7 +379,7 @@
 /* #undef XORG_RELEASE */
 
 /* Current Xorg version */
-#define XORG_VERSION_CURRENT (((1) * 10000000) + ((4) * 100000) + ((0) * 1000) + 0)
+#define XORG_VERSION_CURRENT (((1) * 10000000) + ((0) * 100000) + ((0) * 1000) + 0)
 
 /* Xorg release date */
 #define XORG_DATE "5 September 2007"
@@ -418,7 +418,7 @@
 /* #undef MULTIBUFFER */
 
 /* Support DRI extension */
-#define XF86DRI 1
+/* #undef XF86DRI */
 
 /* Build DBE support */
 #define DBE 1
@@ -440,7 +440,7 @@
 #endif
 
 /* Enable GNU and other extensions to the C environment for GLIBC */
-/* #undef _GNU_SOURCE */
+#define _GNU_SOURCE 1
 
 /* Define to empty if `const' does not conform to ANSI C. */
 /* #undef const */
@@ -455,13 +455,13 @@
 /* #undef _XSERVER64 */
 
 /* Define to location of RGB database */
-#define RGB_DB "/usr/local/share/X11/rgb"
+#define RGB_DB "/etc/X11/rgb"
 
 /* System is BSD-like */
-#define CSRG_BASED 1
+/* #undef CSRG_BASED */
 
 /* Define to 1 if `struct sockaddr_in' has a `sin_len' member */
-#define BSD44SOCKETS 1
+/* #undef BSD44SOCKETS */
 
 /* Define to 1 if modules should avoid the libcwrapper */
 #define NO_LIBCWRAPPER 1
@@ -473,7 +473,7 @@
 /* #undef CONFIG_DBUS_API */
 
 /* Support HAL for hotplug */
-#define CONFIG_HAL 1
+/* #undef CONFIG_HAL */
 
 /* Use only built-in fonts */
 /* #undef BUILTIN_FONTS */
@@ -485,21 +485,21 @@
 /* #undef NULL_ROOT_CURSOR */
 
 /* Have a monotonic clock from clock_gettime() */
-/* #undef MONOTONIC_CLOCK */
+#define MONOTONIC_CLOCK 1
 
 /* Define to 1 if the DTrace Xserver provider probes should be built in */
 /* #undef XSERVER_DTRACE */
 
 /* Path to XErrorDB file */
-#define XERRORDB_PATH "/usr/local/share/X11/XErrorDB"
+#define XERRORDB_PATH "/usr/share/X11/XErrorDB"
 
 /* Define to 16-bit byteswap macro */
-#define bswap_16 bswap16
+/* #undef bswap_16 */
 
 /* Define to 32-bit byteswap macro */
-#define bswap_32 bswap32
+/* #undef bswap_32 */
 
 /* Define to 64-bit byteswap macro */
-#define bswap_64 bswap64
+/* #undef bswap_64 */
 
 #endif /* _DIX_CONFIG_H_ */

@@ -21,7 +21,7 @@
 #define BIGREQS 1
 
 /* Default font path */
-#define COMPILEDDEFAULTFONTPATH "/usr/local/lib/X11/fonts/misc/,/usr/local/lib/X11/fonts/TTF/,/usr/local/lib/X11/fonts/OTF,/usr/local/lib/X11/fonts/Type1/,/usr/local/lib/X11/fonts/100dpi/,/usr/local/lib/X11/fonts/75dpi/"
+#define COMPILEDDEFAULTFONTPATH "/usr/share/fonts/X11/misc/,/usr/share/fonts/X11/TTF/,/usr/share/fonts/X11/OTF,/usr/share/fonts/X11/Type1/,/usr/share/fonts/X11/100dpi/,/usr/share/fonts/X11/75dpi/"
 
 /* Support Composite Extension */
 #define COMPOSITE 1
@@ -36,7 +36,7 @@
 #define DRIVERS {}
 
 /* Build GLX extension */
-#define GLXEXT 1
+/* #undef GLXEXT */
 
 /* Include handhelds.org h3600 touchscreen driver */
 /* #undef H3600_TS */
@@ -156,7 +156,7 @@
 /* #undef XLOADABLE */
 
 /* Build DRI extension */
-#define XF86DRI 1
+/* #undef XF86DRI */
 
 /* Build Xorg server */
 #define XORGSERVER 1
@@ -165,7 +165,7 @@
 /* #undef XORG_RELEASE */
 
 /* Current Xorg version */
-#define XORG_VERSION_CURRENT (((1) * 10000000) + ((4) * 100000) + ((0) * 1000) + 0)
+#define XORG_VERSION_CURRENT (((1) * 10000000) + ((0) * 100000) + ((0) * 1000) + 0)
 
 /* Build Xv Extension */
 #define XvExtension 1
@@ -232,19 +232,19 @@
 #define WITH_VGAHW 1
 
 /* System is BSD-like */
-#define CSRG_BASED 1
+/* #undef CSRG_BASED */
 
 /* Solaris 8 or later? */
 /* #undef __SOL8__ */
 
 /* System has PC console */
-#define PCCONS_SUPPORT 1
+/* #undef PCCONS_SUPPORT */
 
 /* System has PCVT console */
-#define PCVT_SUPPORT 1
+/* #undef PCVT_SUPPORT */
 
 /* System has syscons console */
-#define SYSCONS_SUPPORT 1
+/* #undef SYSCONS_SUPPORT */
 
 /* System has wscons console */
 /* #undef WSCONS_SUPPORT */

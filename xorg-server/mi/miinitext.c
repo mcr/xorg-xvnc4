@@ -209,6 +209,9 @@ extern Bool noPanoramiXExtension;
 #ifdef XINPUT
 extern Bool noXInputExtension;
 #endif
+#ifdef VNCEXT
+extern void vncExtensionInit(INITARGS);
+#endif
 #ifdef XIDLE
 extern Bool noXIdleExtension;
 #endif
@@ -282,6 +285,9 @@ extern void BigReqExtensionInit(INITARGS);
 #endif
 #ifdef MITMISC
 extern void MITMiscExtensionInit(INITARGS);
+#endif
+#ifdef VNCEXT
+extern void vncExtensionInit(INITARGS);
 #endif
 #ifdef XIDLE
 extern void XIdleExtensionInit(INITARGS);
@@ -562,6 +568,9 @@ InitExtensions(argc, argv)
 #endif
 #ifdef MITMISC
     if (!noMITMiscExtension) MITMiscExtensionInit();
+#endif
+#ifdef VNCEXT
+	vncExtensionInit();
 #endif
 #ifdef XIDLE
     if (!noXIdleExtension) XIdleExtensionInit();

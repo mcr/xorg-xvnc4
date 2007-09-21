@@ -7,6 +7,6 @@ sdkdir=${prefix}/include/xorg
 
 Name: xorg-server
 Description: Modular X.Org X Server
-Version: 1.2.0
-Cflags: -I${sdkdir}
+Version: 1.4.0
+Cflags: -I${sdkdir} -I/usr/include/pixman-1  
 Libs: -L${libdir}

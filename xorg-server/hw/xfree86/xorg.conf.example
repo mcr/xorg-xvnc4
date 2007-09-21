@@ -46,23 +46,23 @@ Section "Files"
 # file minus the extension (like ".txt" or ".db").  There is normally
 # no need to change the default.
 
-    RgbPath	"/usr/local/share/X11/rgb"
+    RgbPath	"/etc/X11/rgb"
 
 # Multiple FontPath entries are allowed (which are concatenated together),
 # as well as specifying multiple comma-separated entries in one FontPath
 # command (or a combination of both methods)
 
-    FontPath	"/usr/local/lib/X11/fonts/local"
-    FontPath	"/usr/local/lib/X11/fonts/misc"
-    FontPath	"/usr/local/lib/X11/fonts/Type1"
-    FontPath	"/usr/local/lib/X11/fonts/TTF"
-    FontPath	"/usr/local/lib/X11/fonts/75dpi"
-    FontPath	"/usr/local/lib/X11/fonts/100dpi"
+    FontPath	"/usr/share/fonts/X11/local"
+    FontPath	"/usr/share/fonts/X11/misc"
+    FontPath	"/usr/share/fonts/X11/Type1"
+    FontPath	"/usr/share/fonts/X11/TTF"
+    FontPath	"/usr/share/fonts/X11/75dpi"
+    FontPath	"/usr/share/fonts/X11/100dpi"
 
 # ModulePath can be used to set a search path for the X server modules.
 # The default path is shown here.
 
-#    ModulePath	"/usr/local/lib/xorg/modules"
+#    ModulePath	"/usr/lib/xorg/modules"
 
 EndSection
 
@@ -175,13 +175,7 @@ EndSection
 Section "InputDevice"
 
     Identifier	"Keyboard1"
-    Driver	"keyboard"
-
-# For most OSs the protocol can be omitted (it defaults to "Standard").
-# When using XQUEUE (only for SVR3 and SVR4, but not Solaris), comment
-# out the above line, and uncomment the following line.
-
-#    Option	"Protocol"	"Xqueue"
+    Driver	"kbd"
 
 # Set the keyboard auto repeat parameters.  Not all platforms implement
 # this.
@@ -265,12 +259,6 @@ Section "InputDevice"
 # be available.
 
 #    Option "Protocol"	"PS/2"
-
-# When using XQUEUE (only for SVR3 and SVR4, but not Solaris), use
-# the following instead of any of the lines above.  The Device line
-# is not required in this case.
-
-#    Option	"Protocol"	"Xqueue"
 
 # Baudrate and SampleRate are only for some older Logitech mice.  In
 # almost every case these lines should be omitted.
