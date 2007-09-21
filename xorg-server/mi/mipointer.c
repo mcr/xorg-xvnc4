@@ -515,3 +515,4 @@ miPointerMove (ScreenPtr pScreen, int x, int y, unsigned long time)
     for (i = 0; i < nevents; i++)
         mieqEnqueue(inputInfo.pointer, &events[i]);
 }
+

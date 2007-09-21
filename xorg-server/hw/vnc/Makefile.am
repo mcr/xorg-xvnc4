@@ -19,7 +19,21 @@ libvnccommon_la_CXXFLAGS = \
 		-I../../mfb \
 		-I../../cfb \
 		-I../../../common \
-		-I../../../unix/vncconfig
+		-I../../../unix/vncconfig \
+		$(DIX_CXXFLAGS) 
+
+libvnccommon_la_CFLAGS = \
+		-DVENDOR_RELEASE="$(VENDOR_RELEASE)" \
+		-DVENDOR_STRING="\"$(VENDOR_STRING)\"" \
+		-DGC_HAS_COMPOSITE_CLIP \
+		-DVNC_USE_FB \
+		-I/usr/include/X11 \
+		-I../../mfb \
+		-I../../cfb \
+		-I../../../common \
+		-I../../../unix/vncconfig \
+		$(DIX_CXXFLAGS) 
+
 
 bin_PROGRAMS = Xvnc
 
@@ -28,13 +42,12 @@ Xvnc_SOURCES = \
 		$(top_srcdir)/Xext/dpmsstubs.c \
 		$(top_srcdir)/Xi/stubs.c \
 		$(top_srcdir)/mi/miinitext.c \
-		$(top_srcdir)/fb/fbcmap.c
+		$(top_srcdir)/fb/fbcmap_mi.c
 
 Xvnc_LDADD =	$(XORG_CORE_LIBS) \
 		$(XORG_LIBS) \
 		$(XSERVER_LIBS) \
 		../../fb/libfb.la \
-		../../mi/libminimi.la \
 		../../render/librender.la \
 		../../xkb/libxkbstubs.la \
 		../../dbe/libdbe.la \
@@ -51,12 +64,12 @@ Xvnc_LDADD =	$(XORG_CORE_LIBS) \
 		../../../common/network/libnetwork.a \
 		../../../common/Xregion/libXregion.a
 
-Xvnc_CFLAGS =  -DHAVE_DIX_CONFIG_H \
+Xvnc_CFLAGS =  $(DIX_CXXFLAGS) \
 		-DNO_HW_ONLY_EXTS \
 		-DNO_MODULE_EXTS \
 		-DXFree86Server -DVNCEXT
 
-Xvnc_CXXFLAGS = $(Xvnc_CFLAGS) \
+Xvnc_CXXFLAGS = $(DIX_CXXFLAGS) $(Xvnc_CFLAGS) \
 		-DVENDOR_RELEASE="$(VENDOR_RELEASE)" \
 		-DVENDOR_STRING="\"$(VENDOR_STRING)\"" \
 		-DVNC_USE_FB \
@@ -79,6 +92,7 @@ libvnc_la_LIBADD = \
 		../../../common/network/libnetwork.a \
 		../../../common/Xregion/libXregion.a
 libvnc_la_CXXFLAGS = \
+		$(DIX_CXXFLAGS) \
 		-I../../../common \
 		-I$(top_srcdir)/hw/xfree86/common \
 		-I$(top_srcdir)/hw/xfree86/os-support \
@@ -87,7 +101,7 @@ libvnc_la_CXXFLAGS = \
 
 INCLUDES = $(XORG_INCS)
 
-AM_CXXFLAGS =	$(CFLAGS) \
+AM_CXXFLAGS =	$(DIX_CXXFLAGS) $(CFLAGS) \
 		-DVENDOR_RELEASE="$(VENDOR_RELEASE)" \
 		-DVENDOR_STRING="\"$(VENDOR_STRING)\""
 

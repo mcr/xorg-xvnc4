@@ -915,11 +915,13 @@ Bool LegalModifier(unsigned int key, DevicePtr pDev)
   return TRUE;
 }
 
+#if 0
 void ProcessInputEvents()
 {
   mieqProcessInputEvents();
   miPointerUpdate();
 }
+#endif
 
 /* Fairly standard US PC Keyboard */
 
@@ -1110,8 +1112,11 @@ static int vfbMouseProc(DeviceIntPtr pDevice, int onoff)
     map[3] = 3;
     map[4] = 4;
     map[5] = 5;
-    InitPointerDeviceStruct(pDev, map, 5, miPointerGetMotionEvents,
-                            (PtrCtrlProcPtr)NoopDDA, miPointerGetMotionBufferSize());
+    InitPointerDeviceStruct(pDev, map, 5,
+			    miPointerGetMotionEvents,
+                            (PtrCtrlProcPtr)NoopDDA,
+			    miPointerGetMotionBufferSize(),
+			    2);
     break;
 
   case DEVICE_ON:
@@ -1138,6 +1143,5 @@ void InitInput(int argc, char *argv[])
   k = AddInputDevice(vfbKeybdProc, TRUE);
   RegisterPointerDevice(p);
   RegisterKeyboardDevice(k);
-  miRegisterPointerDevice(screenInfo.screens[0], p);
-  (void)mieqInit ((DevicePtr)k, (DevicePtr)p);
+  (void)mieqInit();
 }

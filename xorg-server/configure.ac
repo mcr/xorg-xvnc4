@@ -1958,8 +1958,10 @@ BUILD_TIME="$(date +'1%H%M%S')"
 AC_SUBST([BUILD_TIME])
 
 DIX_CFLAGS="-DHAVE_DIX_CONFIG_H $XSERVER_CFLAGS"
+DIX_CXXFLAGS="-DHAVE_DIX_CONFIG_H $CORE_INCS $XEXT_INC $COMPOSITE_INC $DAMAGE_INC $FIXES_INC $PIXMAN_CFLAGS $XI_INC $MI_INC $MIEXT_SHADOW_INC $MIEXT_LAYER_INC $MIEXT_DAMAGE_INC $RENDER_INC $RANDR_INC $FB_INC"
 
 AC_SUBST([DIX_CFLAGS])
+AC_SUBST([DIX_CXXFLAGS])
 
 AC_SUBST([libdir exec_prefix prefix])
 
@@ -2065,6 +2067,7 @@ hw/xfree86/utils/pcitweak/Makefile
 hw/xfree86/utils/scanpci/Makefile
 hw/xfree86/utils/xorgcfg/Makefile
 hw/xfree86/utils/xorgconfig/Makefile
+hw/vnc/Makefile
 hw/dmx/config/Makefile
 hw/dmx/doc/Makefile
 hw/dmx/examples/Makefile
